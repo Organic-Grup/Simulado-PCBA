@@ -105,19 +105,6 @@ comentario:"Art. 37 da Constituição Federal."
 
 let ultimoID = 6;
 
-// REMOVER QUANDO O BANCO REAL
-// DE QUESTÕES FOR IMPLEMENTADO
-while(bancoQuestoes.length < 200){
-
-const base =
-bancoQuestoes[
-Math.floor(
-Math.random()*5
-)
-];
-
-bancoQuestoes.push({
-
 id:ultimoID++,
 
 materia:base.materia,

@@ -1,107 +1,292 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PCBA Investigador - Simulador</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="style.css">
+<title>PCBA Investigador PRO</title>
 
-    <meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+
+<meta name="theme-color" content="#0f172a">
 </head>
+
 <body>
 
-<header class="topo">
-    <h1>PCBA Investigador</h1>
+<header class="topbar">
 
-    <div class="painel">
-        <div class="card">
+    <div class="logo">
+        <h1>PCBA Investigador PRO</h1>
+    </div>
+
+    <div class="stats-top">
+
+        <div class="mini-card">
             <span>Tempo</span>
             <strong id="timer">03:00:00</strong>
         </div>
 
-        <div class="card">
+        <div class="mini-card">
             <span>Respondidas</span>
             <strong id="respondidas">0</strong>
         </div>
 
-        <div class="card">
-            <span>Total</span>
+        <div class="mini-card">
+            <span>Questões</span>
             <strong id="totalQuestoes">100</strong>
         </div>
+
     </div>
+
 </header>
 
 <main>
 
-<section class="boas-vindas">
-    <h2>Simulado PCBA 2026</h2>
+<section id="home">
 
-    <p>
-        Simulado inspirado nas provas de Investigador da Polícia Civil da Bahia.
-    </p>
+    <div class="hero">
 
-    <button id="btnIniciar">
-        Iniciar Simulado
-    </button>
+        <h2>Simulador PCBA 2026</h2>
+
+        <p>
+            Plataforma de treinamento para Investigador
+            baseada nos temas mais cobrados em concursos policiais.
+        </p>
+
+        <div class="menu-grid">
+
+            <button id="btnNovoSimulado">
+                Novo Simulado
+            </button>
+
+            <button id="btnModoConcurso">
+                Modo Concurso
+            </button>
+
+            <button id="btnRedacao">
+                Treino de Redação
+            </button>
+
+            <button id="btnTAF">
+                Controle TAF
+            </button>
+
+            <button id="btnHistorico">
+                Histórico
+            </button>
+
+            <button id="btnTema">
+                Alternar Tema
+            </button>
+
+        </div>
+
+    </div>
+
 </section>
 
-<section id="simulado" class="oculto">
+<section id="configuracao" class="hidden">
 
-    <div class="acoes">
+    <h2>Configurar Simulado</h2>
+
+    <div class="config-box">
+
+        <label>
+            Disciplina
+        </label>
+
+        <select id="filtroMateria">
+
+            <option value="todas">
+                Todas
+            </option>
+
+            <option value="Português">
+                Português
+            </option>
+
+            <option value="Direito Penal">
+                Direito Penal
+            </option>
+
+            <option value="Processo Penal">
+                Processo Penal
+            </option>
+
+            <option value="Constitucional">
+                Constitucional
+            </option>
+
+            <option value="Administrativo">
+                Administrativo
+            </option>
+
+            <option value="Informática">
+                Informática
+            </option>
+
+            <option value="Direitos Humanos">
+                Direitos Humanos
+            </option>
+
+        </select>
+
+        <label>
+            Quantidade de Questões
+        </label>
+
+        <input
+            type="number"
+            id="quantidadeQuestoes"
+            value="100"
+            min="10"
+            max="200">
+
+        <button id="btnIniciar">
+            Iniciar Simulado
+        </button>
+
+    </div>
+
+</section>
+
+<section id="simulado" class="hidden">
+
+    <div class="simulado-actions">
+
         <button id="btnFinalizar">
             Finalizar Prova
         </button>
 
-        <button id="btnTema">
-            Alternar Tema
-        </button>
     </div>
 
     <div id="questoes"></div>
 
 </section>
 
-<section id="resultado" class="oculto">
+<section id="resultado" class="hidden">
 
     <h2>Resultado</h2>
 
-    <div class="resultado-box">
+    <div class="resultado-grid">
 
-        <div class="resultado-item">
+        <div class="resultado-card">
             <span>Acertos</span>
             <strong id="acertos">0</strong>
         </div>
 
-        <div class="resultado-item">
+        <div class="resultado-card">
             <span>Erros</span>
             <strong id="erros">0</strong>
         </div>
 
-        <div class="resultado-item">
+        <div class="resultado-card">
             <span>Aproveitamento</span>
             <strong id="percentual">0%</strong>
         </div>
 
     </div>
 
-    <h3>Desempenho por Disciplina</h3>
+    <h3>Estatísticas</h3>
 
     <div id="estatisticas"></div>
 
-    <button onclick="location.reload()">
-        Novo Simulado
+</section>
+
+<section id="redacaoArea" class="hidden">
+
+    <h2>Treino de Redação</h2>
+
+    <div class="redacao-box">
+
+        <h3 id="temaRedacao">
+            O papel da investigação criminal no combate às organizações criminosas.
+        </h3>
+
+        <textarea
+            id="redacaoTexto"
+            rows="15"
+            placeholder="Digite sua redação..."></textarea>
+
+        <div class="contador">
+            Palavras:
+            <strong id="contadorPalavras">
+                0
+            </strong>
+        </div>
+
+        <button id="salvarRedacao">
+            Salvar Redação
+        </button>
+
+    </div>
+
+</section>
+
+<section id="tafArea" class="hidden">
+
+    <h2>Controle TAF</h2>
+
+    <div class="taf-grid">
+
+        <div class="taf-card">
+
+            <h3>Corrida</h3>
+
+            <input
+                type="number"
+                id="corrida"
+                placeholder="Metros">
+
+        </div>
+
+        <div class="taf-card">
+
+            <h3>Abdominal</h3>
+
+            <input
+                type="number"
+                id="abdominal"
+                placeholder="Repetições">
+
+        </div>
+
+        <div class="taf-card">
+
+            <h3>Barra</h3>
+
+            <input
+                type="number"
+                id="barra"
+                placeholder="Repetições">
+
+        </div>
+
+    </div>
+
+    <button id="salvarTAF">
+        Salvar Evolução
     </button>
+
+</section>
+
+<section id="historicoArea" class="hidden">
+
+    <h2>Histórico</h2>
+
+    <div id="historicoResultados"></div>
 
 </section>
 
 </main>
 
 <footer>
+
     <p>
-        Simulador PCBA Investigador
+        PCBA Investigador PRO
     </p>
+
 </footer>
 
 <script src="app.js"></script>

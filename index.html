@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCBA Investigador - Simulador</title>
 
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="theme-color" content="#0f172a">
+</head>
+<body>
+
+<header class="topo">
+    <h1>PCBA Investigador</h1>
+
+    <div class="painel">
+        <div class="card">
+            <span>Tempo</span>
+            <strong id="timer">03:00:00</strong>
+        </div>
+
+        <div class="card">
+            <span>Respondidas</span>
+            <strong id="respondidas">0</strong>
+        </div>
+
+        <div class="card">
+            <span>Total</span>
+            <strong id="totalQuestoes">100</strong>
+        </div>
+    </div>
+</header>
+
+<main>
+
+<section class="boas-vindas">
+    <h2>Simulado PCBA 2026</h2>
+
+    <p>
+        Simulado inspirado nas provas de Investigador da Polícia Civil da Bahia.
+    </p>
+
+    <button id="btnIniciar">
+        Iniciar Simulado
+    </button>
+</section>
+
+<section id="simulado" class="oculto">
+
+    <div class="acoes">
+        <button id="btnFinalizar">
+            Finalizar Prova
+        </button>
+
+        <button id="btnTema">
+            Alternar Tema
+        </button>
+    </div>
+
+    <div id="questoes"></div>
+
+</section>
+
+<section id="resultado" class="oculto">
+
+    <h2>Resultado</h2>
+
+    <div class="resultado-box">
+
+        <div class="resultado-item">
+            <span>Acertos</span>
+            <strong id="acertos">0</strong>
+        </div>
+
+        <div class="resultado-item">
+            <span>Erros</span>
+            <strong id="erros">0</strong>
+        </div>
+
+        <div class="resultado-item">
+            <span>Aproveitamento</span>
+            <strong id="percentual">0%</strong>
+        </div>
+
+    </div>
+
+    <h3>Desempenho por Disciplina</h3>
+
+    <div id="estatisticas"></div>
+
+    <button onclick="location.reload()">
+        Novo Simulado
+    </button>
+
+</section>
+
+</main>
+
+<footer>
+    <p>
+        Simulador PCBA Investigador
+    </p>
+</footer>
+
+<script src="app.js"></script>
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+}
+</script>
+
+</body>
+</html>

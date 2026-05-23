@@ -550,7 +550,8 @@ button:active{
     font-size:16px;
 
     line-height:1.6;
-
+   
+   outline:none;
 }
 
 .contador{
@@ -812,5 +813,68 @@ footer{
 .historico-item{
 
     animation:fadeIn .25s ease;
+
+}
+/* =====================================
+   BARRA DE PROGRESSO
+===================================== */
+
+#barraProgresso{
+
+    width:100%;
+
+    height:8px;
+
+    background:#dbe2ea;
+
+    overflow:hidden;
+
+}
+
+#progresso{
+
+    width:0%;
+
+    height:100%;
+
+    background:var(--success);
+
+    transition:.3s;
+
+}
+/* =====================================
+   BOTÕES VOLTAR
+===================================== */
+
+#voltarHomeRedacao,
+#voltarHomeTAF,
+#voltarHomeHistorico{
+
+    margin-top:10px;
+
+    background:#64748b;
+
+}
+/* =====================================
+   GABARITO
+===================================== */
+
+#gabaritoComentarios{
+
+    margin-top:20px;
+
+}
+
+.gabarito-item{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    padding:15px;
+
+    margin-bottom:10px;
 
 }

@@ -2,11 +2,15 @@
   "name": "PCBA Investigador",
   "short_name": "PCBA",
   "description": "Simulador para Investigador da Polícia Civil da Bahia",
-  "start_url": "./",
+  "start_url": "index.html"
   "display": "standalone",
+  "display_override": [
+  "standalone"
+],
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
   "orientation": "portrait",
+  "lang": "pt-BR",
   "icons": [
     {
       "src": "icon-192.png",

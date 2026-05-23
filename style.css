@@ -1,5 +1,6 @@
-
-/* RESET */
+/* =====================================
+   RESET
+===================================== */
 
 *{
     margin:0;
@@ -7,22 +8,8 @@
     box-sizing:border-box;
 }
 
-:root{
-    --bg:#f5f7fb;
-    --card:#ffffff;
-    --text:#1e293b;
-    --primary:#0f172a;
-    --border:#dbe2ea;
-    --success:#16a34a;
-    --danger:#dc2626;
-}
-
-.dark{
-    --bg:#0f172a;
-    --card:#1e293b;
-    --text:#f8fafc;
-    --primary:#38bdf8;
-    --border:#334155;
+html{
+    scroll-behavior:smooth;
 }
 
 body{
@@ -30,195 +17,805 @@ body{
     background:var(--bg);
     color:var(--text);
     transition:.3s;
+    min-height:100vh;
 }
 
-/* TOPO */
+/* =====================================
+   VARIÁVEIS
+===================================== */
 
-.topo{
+:root{
+
+    --bg:#f5f7fb;
+
+    --card:#ffffff;
+
+    --text:#0f172a;
+
+    --border:#dbe2ea;
+
+    --primary:#0f172a;
+
+    --secondary:#2563eb;
+
+    --success:#16a34a;
+
+    --danger:#dc2626;
+
+    --warning:#f59e0b;
+
+    --shadow:
+        0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.dark{
+
+    --bg:#020617;
+
+    --card:#0f172a;
+
+    --text:#f8fafc;
+
+    --border:#1e293b;
+
+    --primary:#38bdf8;
+
+    --secondary:#60a5fa;
+
+}
+
+/* =====================================
+   UTILIDADES
+===================================== */
+
+.hidden{
+    display:none !important;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.text-center{
+    text-align:center;
+}
+
+/* =====================================
+   TOPO
+===================================== */
+
+.topbar{
+
     position:sticky;
+
     top:0;
+
     z-index:999;
+
     background:var(--card);
+
     border-bottom:1px solid var(--border);
+
     padding:15px;
+
+    box-shadow:var(--shadow);
+
 }
 
-.topo h1{
+.logo{
+
     text-align:center;
+
     margin-bottom:15px;
+
 }
 
-.painel{
+.logo h1{
+
+    font-size:1.6rem;
+
+}
+
+.stats-top{
+
     display:flex;
+
     gap:10px;
+
     justify-content:center;
+
     flex-wrap:wrap;
+
 }
 
-.card{
+.mini-card{
+
     background:var(--bg);
+
     border:1px solid var(--border);
+
     border-radius:12px;
-    padding:10px 15px;
-    min-width:100px;
+
+    padding:10px;
+
+    min-width:120px;
+
     text-align:center;
+
 }
 
-.card span{
+.mini-card span{
+
     display:block;
+
     font-size:12px;
+
+    opacity:.8;
+
 }
 
-.card strong{
+.mini-card strong{
+
+    display:block;
+
+    margin-top:5px;
+
     font-size:18px;
+
 }
 
-/* CONTEÚDO */
+/* =====================================
+   MAIN
+===================================== */
 
 main{
-    max-width:1000px;
+
+    max-width:1200px;
+
     margin:auto;
+
     padding:20px;
+
 }
 
-.boas-vindas{
-    text-align:center;
+/* =====================================
+   HOME
+===================================== */
+
+.hero{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
 }
 
-.boas-vindas h2{
+.hero h2{
+
     margin-bottom:15px;
+
 }
 
-.boas-vindas p{
-    margin-bottom:20px;
+.hero p{
+
+    margin-bottom:25px;
+
+    line-height:1.6;
+
 }
 
-/* BOTÕES */
+/* =====================================
+   GRID MENU
+===================================== */
+
+.menu-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:15px;
+
+}
+
+
+/* =====================================
+   BOTÕES
+===================================== */
 
 button{
+
     border:none;
-    border-radius:10px;
-    padding:12px 20px;
+
     cursor:pointer;
-    background:var(--primary);
-    color:white;
+
+    border-radius:12px;
+
+    padding:14px 18px;
+
     font-weight:bold;
+
+    background:var(--primary);
+
+    color:white;
+
+    transition:.3s;
+
 }
 
 button:hover{
-    opacity:.9;
+
+    transform:translateY(-2px);
+
+    opacity:.95;
+
 }
 
-.acoes{
+button:active{
+
+    transform:translateY(0);
+
+}
+
+/* =====================================
+   CONFIGURAÇÃO
+===================================== */
+
+.config-box{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-top:20px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.config-box label{
+
+    display:block;
+
+    margin-top:15px;
+
+    margin-bottom:8px;
+
+    font-weight:bold;
+
+}
+
+.config-box select,
+.config-box input{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+}
+
+/* =====================================
+   SIMULADO
+===================================== */
+
+.simulado-actions{
+
     display:flex;
+
     gap:10px;
+
     margin-bottom:20px;
+
     flex-wrap:wrap;
+
 }
 
-/* QUESTÕES */
+#questoes{
+
+    margin-top:20px;
+
+}
 
 .questao{
+
     background:var(--card);
+
     border:1px solid var(--border);
-    border-radius:12px;
-    padding:15px;
+
+    border-radius:16px;
+
+    padding:20px;
+
     margin-bottom:15px;
+
+    box-shadow:var(--shadow);
+
 }
 
 .questao h3{
-    margin-bottom:10px;
-    font-size:16px;
+
+    margin-top:10px;
+
+    margin-bottom:15px;
+
+    line-height:1.5;
+
 }
+
+/* =====================================
+   TAG DA MATÉRIA
+===================================== */
 
 .materia{
+
     display:inline-block;
-    margin-bottom:10px;
-    font-size:12px;
-    background:var(--primary);
+
+    padding:5px 10px;
+
+    border-radius:8px;
+
+    background:var(--secondary);
+
     color:white;
-    padding:4px 8px;
-    border-radius:6px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
 }
 
+/* =====================================
+   ALTERNATIVAS
+===================================== */
+
 .alternativa{
+
     display:block;
-    padding:8px;
-    margin:5px 0;
-    border-radius:8px;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    margin-bottom:8px;
+
+    border:1px solid transparent;
+
+    cursor:pointer;
+
+    transition:.2s;
+
 }
 
 .alternativa:hover{
-    background:rgba(0,0,0,.05);
+
+    border-color:var(--secondary);
+
+    background:rgba(37,99,235,.08);
+
 }
 
-/* RESULTADO */
+.alternativa input{
 
-.resultado-box{
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-    margin:20px 0;
+    margin-right:10px;
+
 }
 
-.resultado-item{
-    flex:1;
-    min-width:180px;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:20px;
-    text-align:center;
-}
-
-.resultado-item strong{
-    display:block;
-    margin-top:10px;
-    font-size:24px;
-}
-
-#estatisticas{
-    margin:20px 0;
-}
-
-.estatistica{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:10px;
-    margin-bottom:10px;
-}
-
-/* UTIL */
-
-.oculto{
-    display:none;
-}
+/* =====================================
+   FEEDBACK
+===================================== */
 
 .acerto{
-    color:var(--success);
+
+    border-left:5px solid var(--success);
+
 }
 
 .erro{
-    color:var(--danger);
+
+    border-left:5px solid var(--danger);
+
 }
+
+/* =====================================
+   RESULTADO
+===================================== */
+
+.resultado-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:15px;
+
+    margin-top:20px;
+
+    margin-bottom:20px;
+
+}
+
+.resultado-card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+}
+
+.resultado-card span{
+
+    display:block;
+
+    margin-bottom:10px;
+
+}
+
+.resultado-card strong{
+
+    font-size:30px;
+
+}
+
+#estatisticas{
+
+    margin-top:20px;
+
+}
+
+.estatistica{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    padding:15px;
+
+    margin-bottom:10px;
+
+}
+
+/* =====================================
+   REDAÇÃO
+===================================== */
+
+.redacao-box{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.redacao-box h3{
+
+    margin-bottom:15px;
+
+    line-height:1.5;
+
+}
+
+#redacaoTexto{
+
+    width:100%;
+
+    min-height:350px;
+
+    resize:vertical;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    border:1px solid var(--border);
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-size:16px;
+
+    line-height:1.6;
+
+}
+
+.contador{
+
+    margin-top:10px;
+
+    margin-bottom:15px;
+
+    font-weight:bold;
+
+}
+
+/* =====================================
+   TAF
+===================================== */
+
+.taf-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
+
+    gap:15px;
+
+    margin-top:20px;
+
+    margin-bottom:20px;
+
+}
+
+.taf-card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:20px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.taf-card h3{
+
+    margin-bottom:15px;
+
+}
+
+.taf-card input{
+
+    width:100%;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    border:1px solid var(--border);
+
+    background:var(--bg);
+
+    color:var(--text);
+
+}
+
+/* =====================================
+   HISTÓRICO
+===================================== */
+
+#historicoResultados{
+
+    margin-top:20px;
+
+}
+
+.historico-item{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    padding:15px;
+
+    margin-bottom:10px;
+
+    box-shadow:var(--shadow);
+
+}
+
+/* =====================================
+   CARDS GENÉRICOS
+===================================== */
+
+.card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:20px;
+
+    box-shadow:var(--shadow);
+
+}
+
+/* =====================================
+   SEÇÕES
+===================================== */
+
+section{
+
+    margin-top:25px;
+
+}
+
+/* =====================================
+   FOOTER
+===================================== */
 
 footer{
-    text-align:center;
+
+    margin-top:40px;
+
     padding:30px;
-    color:gray;
+
+    text-align:center;
+
+    opacity:.8;
+
 }
 
-/* RESPONSIVO */
+/* =====================================
+   RESPONSIVO TABLET
+===================================== */
 
-@media(max-width:700px){
+@media (max-width:900px){
 
-    .resultado-box{
+    .stats-top{
+
+        justify-content:center;
+
+    }
+
+    .mini-card{
+
+        min-width:140px;
+
+    }
+
+}
+
+/* =====================================
+   RESPONSIVO CELULAR
+===================================== */
+
+@media (max-width:700px){
+
+    main{
+
+        padding:12px;
+
+    }
+
+    .hero{
+
+        padding:20px;
+
+    }
+
+    .config-box{
+
+        padding:20px;
+
+    }
+
+    .questao{
+
+        padding:15px;
+
+    }
+
+    .resultado-card{
+
+        padding:20px;
+
+    }
+
+    .menu-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .resultado-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .taf-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .stats-top{
+
         flex-direction:column;
+
+        align-items:center;
+
     }
 
-    .card{
+    .mini-card{
+
         width:100%;
+
+        max-width:300px;
+
     }
 
 }
+
+/* =====================================
+   ANIMAÇÕES
+===================================== */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.hero,
+.questao,
+.resultado-card,
+.taf-card,
+.redacao-box,
+.historico-item{
+
+    animation:fadeIn .25s ease;
+
+}
+
+    

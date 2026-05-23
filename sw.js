@@ -12,16 +12,16 @@ const urlsToCache = [
 
 self.addEventListener("install", event => {
 
+    self.skipWaiting();
+
     event.waitUntil(
-self.clients.claim();
+
         caches.open(CACHE_NAME)
         .then(cache => {
 
             return cache.addAll(
                 urlsToCache
             );
-            
-            self.skipWaiting();
 
         })
 
@@ -36,8 +36,7 @@ self.addEventListener("fetch", event => {
         caches.match(event.request)
         .then(response => {
 
-            return response ||
-                   fetch(event.request);
+            return response || fetch(event.request);
 
         })
 
@@ -49,21 +48,23 @@ self.addEventListener("activate", event => {
 
     event.waitUntil(
 
-        caches.keys().then(keys => {
+        Promise.all([
 
-            return Promise.all(
+            caches.keys().then(keys => {
 
-                keys
-                .filter(key =>
-                    key !== CACHE_NAME
-                )
-                .map(key =>
-                    caches.delete(key)
-                )
+                return Promise.all(
 
-            );
+                    keys
+                    .filter(key => key !== CACHE_NAME)
+                    .map(key => caches.delete(key))
 
-        })
+                );
+
+            }),
+
+            self.clients.claim()
+
+        ])
 
     );
 

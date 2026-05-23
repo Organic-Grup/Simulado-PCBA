@@ -105,6 +105,8 @@ comentario:"Art. 37 da Constituição Federal."
 
 let ultimoID = 6;
 
+// REMOVER QUANDO O BANCO REAL
+// DE QUESTÕES FOR IMPLEMENTADO
 while(bancoQuestoes.length < 200){
 
 const base =
@@ -430,6 +432,25 @@ function atualizarRespondidas(){
 
     respondidas.textContent =
     marcadas;
+
+    const progresso =
+    document.getElementById(
+        "progresso"
+    );
+
+    if(progresso){
+
+        const percentual =
+
+        (
+            marcadas /
+            questoesAtuais.length
+        ) * 100;
+
+        progresso.style.width =
+        percentual + "%";
+
+    }
 
 }
 // =====================================

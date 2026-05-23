@@ -1,222 +1,188 @@
+// =====================================
+// BANCO DE QUESTÕES - PCBA INVESTIGADOR PRO
+// =====================================
+
 const bancoQuestoes = [
-
-/* =========================
-   PORTUGUÊS
-========================= */
-
+/* ========================= PORTUGUÊS ========================= */
 {
-    id:1,
-    materia:"Português",
-    assunto:"Interpretação de Texto",
-    nivel:"Médio",
-
-    pergunta:"A principal finalidade da interpretação textual é:",
-
-    alternativas:[
-        "Identificar apenas erros gramaticais",
-        "Compreender os sentidos produzidos pelo texto",
-        "Memorizar palavras difíceis",
-        "Analisar somente a ortografia",
-        "Localizar verbos"
-    ],
-
-    correta:1,
-
-    comentario:"A interpretação textual busca compreender as ideias, intenções e sentidos presentes no texto."
+id: 1,
+materia: "Português",
+assunto: "Interpretação de Texto",
+nivel: "Fácil",
+pergunta: "A interpretação textual busca principalmente:",
+alternativas: [
+"Corrigir ortografia",
+"Compreender o sentido do texto",
+"Contar palavras",
+"Identificar apenas verbos",
+"Memorizar regras gramaticais"
+],
+correta: 1,
+comentario: "Interpretação busca compreender o sentido global do texto."
 },
 
 {
-    id:2,
-    materia:"Português",
-    assunto:"Crase",
-    nivel:"Difícil",
-
-    pergunta:"Assinale a alternativa em que o uso da crase está correto.",
-
-    alternativas:[
-        "Vou à Salvador amanhã.",
-        "Cheguei à escola cedo.",
-        "Entreguei o livro à Pedro.",
-        "Retornei à pé.",
-        "Refiro-me à pessoas experientes."
-    ],
-
-    correta:1,
-
-    comentario:"Ocorre crase em 'à escola' pela fusão da preposição 'a' com o artigo feminino 'a'."
+id: 2,
+materia: "Português",
+assunto: "Coesão Textual",
+nivel: "Médio",
+pergunta: "A coesão textual está relacionada:",
+alternativas: [
+"À estética do texto",
+"À ligação entre as partes do texto",
+"À quantidade de palavras",
+"À ortografia correta",
+"À pontuação isolada"
+],
+correta: 1,
+comentario: "Coesão é a conexão lógica entre partes do texto."
 },
 
-/* =========================
-   DIREITO PENAL
-========================= */
+/* ========================= DIREITO PENAL ========================= */
 
 {
-    id:3,
-    materia:"Direito Penal",
-    assunto:"Tentativa",
-    nivel:"Médio",
-
-    pergunta:"O crime tentado ocorre quando:",
-
-    alternativas:[
-        "Há apenas cogitação",
-        "O agente inicia a execução e não consuma por circunstâncias alheias à sua vontade",
-        "O crime é consumado",
-        "O agente desiste antes da execução",
-        "O juiz arquiva o processo"
-    ],
-
-    correta:1,
-
-    comentario:"Art. 14, II do Código Penal."
+id: 3,
+materia: "Direito Penal",
+assunto: "Tentativa",
+nivel: "Médio",
+pergunta: "O crime tentado ocorre quando:",
+alternativas: [
+"O agente apenas pensa no crime",
+"O crime se consuma normalmente",
+"A execução é iniciada mas não se consuma por circunstâncias alheias à vontade do agente",
+"O crime é impossível",
+"O juiz impede a ação"
+],
+correta: 2,
+comentario: "Art. 14, II do Código Penal."
 },
 
 {
-    id:4,
-    materia:"Direito Penal",
-    assunto:"Legítima Defesa",
-    nivel:"Difícil",
-
-    pergunta:"A legítima defesa é:",
-
-    alternativas:[
-        "Crime privilegiado",
-        "Causa de aumento",
-        "Excludente de ilicitude",
-        "Excludente de culpabilidade",
-        "Circunstância agravante"
-    ],
-
-    correta:2,
-
-    comentario:"Prevista no art. 23 do Código Penal."
+id: 4,
+materia: "Direito Penal",
+assunto: "Legítima Defesa",
+nivel: "Fácil",
+pergunta: "A legítima defesa é considerada:",
+alternativas: [
+"Crime privilegiado",
+"Excludente de ilicitude",
+"Agravante penal",
+"Crime hediondo",
+"Circunstância neutra"
+],
+correta: 1,
+comentario: "Art. 23 do Código Penal."
 },
 
-/* =========================
-   PROCESSO PENAL
-========================= */
+/* ========================= PROCESSO PENAL ========================= */
 
 {
-    id:5,
-    materia:"Processo Penal",
-    assunto:"Inquérito Policial",
-    nivel:"Médio",
-
-    pergunta:"O inquérito policial possui natureza:",
-
-    alternativas:[
-        "Jurisdicional",
-        "Legislativa",
-        "Administrativa investigativa",
-        "Constitucional",
-        "Judicial"
-    ],
-
-    correta:2,
-
-    comentario:"O inquérito policial é um procedimento administrativo."
+id: 5,
+materia: "Processo Penal",
+assunto: "Inquérito Policial",
+nivel: "Fácil",
+pergunta: "O inquérito policial tem natureza:",
+alternativas: [
+"Judicial",
+"Legislativa",
+"Administrativa investigativa",
+"Condenatória",
+"Privada"
+],
+correta: 2,
+comentario: "É um procedimento administrativo investigatório."
 },
 
-/* =========================
-   CONSTITUCIONAL
-========================= */
-
 {
-    id:6,
-    materia:"Constitucional",
-    assunto:"Direitos Fundamentais",
-    nivel:"Fácil",
-
-    pergunta:"A inviolabilidade do direito à vida está prevista em:",
-
-    alternativas:[
-        "Art. 5º da Constituição",
-        "Código Penal",
-        "Código Civil",
-        "Lei de Execução Penal",
-        "CPP"
-    ],
-
-    correta:0,
-
-    comentario:"Art. 5º, caput, da Constituição Federal."
+id: 6,
+materia: "Processo Penal",
+assunto: "Ação Penal",
+nivel: "Médio",
+pergunta: "A ação penal pública é promovida por:",
+alternativas: [
+"Defensor público",
+"Juiz",
+"Ministério Público",
+"Polícia Civil",
+"Vítima"
+],
+correta: 2,
+comentario: "Art. 129, I da Constituição Federal."
 },
 
-/* =========================
-   ADMINISTRATIVO
-========================= */
+/* ========================= CONSTITUCIONAL ========================= */
 
 {
-    id:7,
-    materia:"Administrativo",
-    assunto:"Princípios",
-    nivel:"Fácil",
-
-    pergunta:"Qual dos princípios abaixo integra o art. 37 da Constituição Federal?",
-
-    alternativas:[
-        "Rentabilidade",
-        "Moralidade",
-        "Competitividade",
-        "Mercantilidade",
-        "Eficiência Privada"
-    ],
-
-    correta:1,
-
-    comentario:"Princípio da Moralidade Administrativa."
+id: 7,
+materia: "Constitucional",
+assunto: "Direitos Fundamentais",
+nivel: "Fácil",
+pergunta: "A inviolabilidade do direito à vida está prevista:",
+alternativas: [
+"No Código Civil",
+"No art. 5º da Constituição Federal",
+"No Código Penal",
+"No CPP",
+"Na CLT"
+],
+correta: 1,
+comentario: "Art. 5º da CF/88."
 },
 
-/* =========================
-   INFORMÁTICA
-========================= */
+/* ========================= ADMINISTRATIVO ========================= */
 
 {
-    id:8,
-    materia:"Informática",
-    assunto:"Segurança",
-
-    nivel:"Fácil",
-
-    pergunta:"Um antivírus tem como função principal:",
-
-    alternativas:[
-        "Aumentar a internet",
-        "Editar documentos",
-        "Detectar e remover ameaças",
-        "Formatar o computador",
-        "Criar senhas"
-    ],
-
-    correta:2,
-
-    comentario:"O antivírus protege o sistema contra softwares maliciosos."
+id: 8,
+materia: "Administrativo",
+assunto: "Princípios",
+nivel: "Fácil",
+pergunta: "Qual princípio está no art. 37 da Constituição Federal?",
+alternativas: [
+"Lucro",
+"Moralidade",
+"Privacidade empresarial",
+"Competitividade",
+"Autonomia privada"
+],
+correta: 1,
+comentario: "Princípio da Moralidade Administrativa."
 },
 
-/* =========================
-   DIREITOS HUMANOS
-========================= */
+/* ========================= INFORMÁTICA ========================= */
 
 {
-    id:9,
-    materia:"Direitos Humanos",
-    assunto:"Declaração Universal",
+id: 9,
+materia: "Informática",
+assunto: "Segurança",
+nivel: "Fácil",
+pergunta: "Um antivírus tem como função principal:",
+alternativas: [
+"Aumentar velocidade da internet",
+"Detectar e remover ameaças",
+"Editar vídeos",
+"Criar backups automaticamente",
+"Formatar o computador"
+],
+correta: 1,
+comentario: "Antivírus protege contra malware."
+},
 
-    nivel:"Fácil",
+/* ========================= DIREITOS HUMANOS ========================= */
 
-    pergunta:"A Declaração Universal dos Direitos Humanos foi adotada em:",
-
-    alternativas:[
-        "1945",
-        "1948",
-        "1964",
-        "1988",
-        "2000"
-    ],
-
-    correta:1,
-
-    comentario:"Foi adotada pela ONU em 1948."
+{
+id: 10,
+materia: "Direitos Humanos",
+assunto: "ONU",
+nivel: "Fácil",
+pergunta: "A Declaração Universal dos Direitos Humanos foi criada em:",
+alternativas: [
+"1945",
+"1948",
+"1964",
+"1988",
+"2001"
+],
+correta: 1,
+comentario: "Adotada pela ONU em 1948."
 }
-
 ];

@@ -103,29 +103,7 @@ comentario:"Art. 37 da Constituição Federal."
 
 // ---------- EXPANSÃO AUTOMÁTICA ----------
 
-let ultimoID = 6;
 
-id:ultimoID++,
-
-materia:base.materia,
-
-assunto:base.assunto,
-
-pergunta:
-base.pergunta + " (" + ultimoID + ")",
-
-alternativas:
-[...base.alternativas],
-
-correta:
-base.correta,
-
-comentario:
-base.comentario
-
-});
-
-}
 
 // ---------- ELEMENTOS ----------
 

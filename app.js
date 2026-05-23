@@ -323,7 +323,15 @@ function gerarSimulado(){
     }
 
     embaralhar(base);
+if(base.length === 0){
 
+    alert(
+        "Ainda não existem questões cadastradas para esta disciplina."
+    );
+
+    return;
+
+}
     questoesAtuais =
     base.slice(
         0,

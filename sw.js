@@ -1,23 +1,27 @@
-const CACHE_NAME = "pcba-v1";
+const CACHE_NAME = "pcba-v2";
 
 const urlsToCache = [
     "./",
     "./index.html",
     "./style.css",
     "./app.js",
-    "./manifest.json"
+    "./manifest.json",
+    "./icon-192.png",
+    "./icon-512.png"
 ];
 
 self.addEventListener("install", event => {
 
     event.waitUntil(
-
+self.clients.claim();
         caches.open(CACHE_NAME)
         .then(cache => {
 
             return cache.addAll(
                 urlsToCache
             );
+            
+            self.skipWaiting();
 
         })
 

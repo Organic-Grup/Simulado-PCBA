@@ -561,6 +561,8 @@ function corrigirProva(){
 
     });
 
+    respondidas.textContent = 0;
+    
     mostrar(resultado);
 
 }
@@ -1175,6 +1177,32 @@ document
 // =====================================
 // INICIALIZAÇÃO
 // =====================================
+document
+.getElementById(
+    "voltarHomeRedacao"
+)
+?.addEventListener(
+    "click",
+    ()=>mostrar(home)
+);
+
+document
+.getElementById(
+    "voltarHomeTAF"
+)
+?.addEventListener(
+    "click",
+    ()=>mostrar(home)
+);
+
+document
+.getElementById(
+    "voltarHomeHistorico"
+)
+?.addEventListener(
+    "click",
+    ()=>mostrar(home)
+);
 
 function iniciarSistema(){
 

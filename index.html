@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>PCBA Investigador PRO</title>
 
-    <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0f172a">
-    
-<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
 
-<meta name="theme-color" content="#0f172a">
+<meta name="theme-color"
+content="#0f172a">
 
-    <link rel="icon" href="icon-192.png">
+<link rel="stylesheet"
+href="style.css">
+
+<link rel="icon"
+href="icon-192.png">
 
 </head>
 
@@ -21,32 +27,49 @@
 
 <header class="topbar">
 
-    <div class="logo">
-        <h1>PCBA Investigador PRO</h1>
-    </div>
+<div class="logo">
 
-    <div class="stats-top">
+<h1>PCBA Investigador PRO</h1>
 
-        <div class="mini-card">
-            <span>Tempo</span>
-            <strong id="timer">03:00:00</strong>
-        </div>
+</div>
 
-        <div class="mini-card">
-            <span>Respondidas</span>
-            <strong id="respondidas">0</strong>
-        </div>
+<div class="stats-top">
 
-        <div class="mini-card">
-            <span>Questões</span>
-            <strong id="totalQuestoes">100</strong>
-        </div>
+<div class="mini-card">
 
-    </div>
+<span>Tempo</span>
 
-    <div id="barraProgresso">
+<strong id="timer">
+03:00:00
+</strong>
 
-    <div id="progresso"></div>
+</div>
+
+<div class="mini-card">
+
+<span>Respondidas</span>
+
+<strong id="respondidas">
+0
+</strong>
+
+</div>
+
+<div class="mini-card">
+
+<span>Questões</span>
+
+<strong id="totalQuestoes">
+100
+</strong>
+
+</div>
+
+</div>
+
+<div id="barraProgresso">
+
+<div id="progresso"></div>
 
 </div>
 
@@ -56,118 +79,147 @@
 
 <section id="home">
 
-    <div class="hero">
+<div class="hero">
 
-        <h2>Simulador PCBA 2026</h2>
+<h2>
+Simulador PCBA 2026
+</h2>
 
-        <p>
-            Plataforma de treinamento para Investigador
-            baseada nos temas mais cobrados em concursos policiais.
-        </p>
+<p>
 
-        <div class="menu-grid">
+Plataforma de treinamento para
+Investigador da Polícia Civil da Bahia.
 
-            <button id="btnNovoSimulado">
-                Novo Simulado
-            </button>
+</p>
 
-            <button id="btnModoConcurso">
-                Modo Concurso
-            </button>
+<div class="menu-grid">
 
-            <button id="btnRedacao">
-                Treino de Redação
-            </button>
+<button id="btnNovoSimulado">
+Novo Simulado
+</button>
 
-            <button id="btnTAF">
-                Controle TAF
-            </button>
+<button id="btnModoConcurso">
+Modo Concurso
+</button>
 
-            <button id="btnHistorico">
-                Histórico
-            </button>
+<button id="btnRedacao">
+Treino de Redação
+</button>
 
-            <button id="btnTema">
-                Alternar Tema
-            </button>
+<button id="btnTAF">
+Controle TAF
+</button>
 
-        </div>
+<button id="btnHistorico">
+Histórico
+</button>
 
-    </div>
+<button id="btnTema">
+Alternar Tema
+</button>
 
-</section>
+</div>
 
-<section id="configuracao" class="hidden">
-
-    <h2>Configurar Simulado</h2>
-
-    <div class="config-box">
-
-        <label>
-            Disciplina
-        </label>
-
-        <select id="filtroMateria">
-
-            <option value="todas">
-                Todas
-            </option>
-
-            <option value="Português">
-                Português
-            </option>
-
-            <option value="Direito Penal">
-                Direito Penal
-            </option>
-
-            <option value="Processo Penal">
-                Processo Penal
-            </option>
-
-            <option value="Constitucional">
-                Constitucional
-            </option>
-
-            <option value="Administrativo">
-                Administrativo
-            </option>
-
-            <option value="Informática">
-                Informática
-            </option>
-
-            <option value="Direitos Humanos">
-                Direitos Humanos
-            </option>
-
-        </select>
-
-        <label>
-            Quantidade de Questões
-        </label>
-
-        <input
-            type="number"
-            id="quantidadeQuestoes"
-            value="100"
-            min="10"
-            max="200">
-
-        <button id="btnIniciar">
-            Iniciar Simulado
-        </button>
-
-    </div>
+</div>
 
 </section>
 
-<section id="simulado" class="hidden">
+<section
+id="configuracao"
+class="hidden">
+
+<h2>
+Configurar Simulado
+</h2>
+
+<div class="config-box">
+
+<label>
+Disciplina
+</label>
+
+<select id="filtroMateria">
+
+<option value="todas">
+Todas
+</option>
+
+<option value="Português">
+Português
+</option>
+
+<option value="Direito Penal">
+Direito Penal
+</option>
+
+<option value="Processo Penal">
+Processo Penal
+</option>
+
+<option value="Constitucional">
+Constitucional
+</option>
+
+<option value="Administrativo">
+Administrativo
+</option>
+
+<option value="Informática">
+Informática
+</option>
+
+<option value="Direitos Humanos">
+Direitos Humanos
+</option>
+
+<option value="Contabilidade">
+Contabilidade
+</option>
+
+<option value="Raciocínio Lógico">
+Raciocínio Lógico
+</option>
+
+<option value="Legislação Especial">
+Legislação Especial
+</option>
+
+<option value="Criminologia">
+Criminologia
+</option>
+
+</select>
+
+<label>
+Quantidade de Questões
+</label>
+
+<input
+type="number"
+id="quantidadeQuestoes"
+value="100"
+min="10"
+max="200">
+
+<button id="btnIniciar">
+
+Iniciar Simulado
+
+</button>
+
+</div>
+
+</section>
+    <section id="simulado" class="hidden">
 
     <div class="simulado-actions">
 
         <button id="btnFinalizar">
             Finalizar Prova
+        </button>
+
+        <button id="btnSalvarSimulado">
+            Salvar Progresso
         </button>
 
     </div>
@@ -183,34 +235,72 @@
     <div class="resultado-grid">
 
         <div class="resultado-card">
+
             <span>Acertos</span>
-            <strong id="acertos">0</strong>
+
+            <strong id="acertos">
+                0
+            </strong>
+
         </div>
 
         <div class="resultado-card">
+
             <span>Erros</span>
-            <strong id="erros">0</strong>
+
+            <strong id="erros">
+                0
+            </strong>
+
         </div>
 
         <div class="resultado-card">
+
             <span>Aproveitamento</span>
-            <strong id="percentual">0%</strong>
+
+            <strong id="percentual">
+                0%
+            </strong>
+
         </div>
 
     </div>
 
-    <h3>Estatísticas</h3>
+    <h3>
+        Estatísticas por Matéria
+    </h3>
 
     <div id="estatisticas"></div>
+
+    <h3>
+        Gabarito Comentado
+    </h3>
+
     <div id="gabaritoComentarios"></div>
+
+    <br>
+
+    <button id="btnVoltarInicio">
+        Voltar ao Menu
+    </button>
+
+    <button id="btnRefazer">
+        Refazer Simulado
+    </button>
 
 </section>
 
-<section id="redacaoArea" class="hidden">
+    <section id="redacaoArea" class="hidden">
 
     <h2>Treino de Redação</h2>
 
     <div class="redacao-box">
+
+        <button id="novoTemaRedacao">
+            Gerar Novo Tema
+        </button>
+
+        <br><br>
 
         <h3 id="temaRedacao">
             O papel da investigação criminal no combate às organizações criminosas.
@@ -222,20 +312,23 @@
             placeholder="Digite sua redação..."></textarea>
 
         <div class="contador">
+
             Palavras:
+
             <strong id="contadorPalavras">
                 0
             </strong>
+
         </div>
 
         <button id="salvarRedacao">
             Salvar Redação
         </button>
-        
-    <button id="voltarHomeRedacao">
-    Voltar ao Menu
 
-</button>
+        <button id="voltarHomeRedacao">
+            Voltar ao Menu
+        </button>
+
     </div>
 
 </section>
@@ -284,11 +377,11 @@
     <button id="salvarTAF">
         Salvar Evolução
     </button>
-    
-<button id="voltarHomeTAF">
-    Voltar ao Menu
-</button>
-    
+
+    <button id="voltarHomeTAF">
+        Voltar ao Menu
+    </button>
+
 </section>
 
 <section id="historicoArea" class="hidden">
@@ -297,10 +390,16 @@
 
     <div id="historicoResultados"></div>
 
+    <br>
+
+    <button id="limparHistorico">
+        Limpar Histórico
+    </button>
+
     <button id="voltarHomeHistorico">
-    Voltar ao Menu
-</button>
-    
+        Voltar ao Menu
+    </button>
+
 </section>
 
 </main>
@@ -312,16 +411,23 @@
     </p>
 
 </footer>
-    
+
 <script src="questoes.js"></script>
 <script src="app.js"></script>
 
 <script>
-if ('serviceWorker' in navigator) {
+
+if ("serviceWorker" in navigator) {
+
     window.addEventListener("load", () => {
-        navigator.serviceWorker.register('./sw.js');
+
+        navigator.serviceWorker.register("./sw.js");
+
     });
+
 }
+
 </script>
+
 </body>
 </html>

@@ -952,25 +952,23 @@ alert(
 // INICIALIZAÇÃO
 // =====================================
 carregarHistorico();
-
-mostrar(home);
+carregarHistorico();
 
 const salvo = localStorage.getItem("simuladoSalvo");
 
 if (salvo) {
+  const continuar = confirm(
+    "Você tem um simulado salvo. Deseja continuar de onde parou?"
+  );
 
-const continuar = confirm(
-"Você tem um simulado salvo. Deseja continuar de onde parou?"
-);
-
-if (continuar) {
-carregarSimuladoSalvo();
+  if (continuar) {
+    carregarSimuladoSalvo();
+  } else {
+    localStorage.removeItem("simuladoSalvo");
+    mostrar(home);
+  }
 } else {
-mostrar(home);
-}
-
-} else {
-mostrar(home);
+  mostrar(home);
 }
 
 console.log("PCBA Investigador PRO carregado com sucesso.");

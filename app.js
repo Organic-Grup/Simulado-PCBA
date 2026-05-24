@@ -952,7 +952,6 @@ alert(
 // INICIALIZAÇÃO
 // =====================================
 carregarHistorico();
-carregarHistorico();
 
 const salvo = localStorage.getItem("simuladoSalvo");
 

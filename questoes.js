@@ -691,3 +691,913 @@ alternativas: [
 correta: 0,
 comentario: "Garantia de igualdade no acesso aos cargos."
 },
+
+{
+id: 51,
+materia: "Contabilidade",
+pergunta: "O Patrimônio Líquido representa:",
+alternativas: [
+"As dívidas da empresa",
+"Os bens da empresa",
+"A diferença entre Ativo e Passivo",
+"Apenas o capital social",
+"As receitas futuras"
+],
+correta: 2,
+comentario: "PL = Ativo - Passivo."
+},
+
+{
+id: 52,
+materia: "Contabilidade",
+pergunta: "São contas do Ativo:",
+alternativas: [
+"Fornecedores",
+"Empréstimos",
+"Caixa e Bancos",
+"Salários a pagar",
+"Impostos a recolher"
+],
+correta: 2,
+comentario: "Caixa e Bancos pertencem ao Ativo."
+},
+
+{
+id: 53,
+materia: "Contabilidade",
+pergunta: "A conta Fornecedores é classificada como:",
+alternativas: [
+"Ativo",
+"Receita",
+"Passivo",
+"Despesa",
+"Patrimônio Líquido"
+],
+correta: 2,
+comentario: "Fornecedores representa obrigação."
+},
+
+{
+id: 54,
+materia: "Contabilidade",
+pergunta: "O Balanço Patrimonial demonstra:",
+alternativas: [
+"Apenas despesas",
+"A situação patrimonial da entidade",
+"Apenas receitas",
+"O fluxo de caixa",
+"As vendas anuais"
+],
+correta: 1,
+comentario: "Balanço evidencia patrimônio."
+},
+
+{
+id: 55,
+materia: "Contabilidade",
+pergunta: "O registro dos fatos contábeis é feito por meio de:",
+alternativas: [
+"Lançamentos",
+"Inventários",
+"Relatórios",
+"Memorandos",
+"Pareceres"
+],
+correta: 0,
+comentario: "Todo fato contábil gera lançamento."
+},
+
+{
+id: 56,
+materia: "Contabilidade",
+pergunta: "A equação fundamental da contabilidade é:",
+alternativas: [
+"Receita = Despesa",
+"Ativo = Passivo + Patrimônio Líquido",
+"Lucro = Caixa",
+"Ativo = Receita",
+"Passivo = Despesa"
+],
+correta: 1,
+comentario: "Equação patrimonial básica."
+},
+
+{
+id: 57,
+materia: "Contabilidade",
+pergunta: "Conta Caixa pertence ao:",
+alternativas: [
+"Ativo",
+"Passivo",
+"Patrimônio Líquido",
+"Receita",
+"Despesa"
+],
+correta: 0,
+comentario: "Disponibilidade financeira."
+},
+
+{
+id: 58,
+materia: "Contabilidade",
+pergunta: "Recebimento de cliente gera:",
+alternativas: [
+"Aumento do caixa",
+"Redução do ativo",
+"Redução do patrimônio",
+"Aumento do passivo",
+"Nenhuma alteração"
+],
+correta: 0,
+comentario: "Entrada de recursos."
+},
+
+{
+id: 59,
+materia: "Contabilidade",
+pergunta: "O Passivo representa:",
+alternativas: [
+"Bens",
+"Direitos",
+"Obrigações",
+"Receitas",
+"Lucros"
+],
+correta: 2,
+comentario: "Passivo = dívidas e obrigações."
+},
+
+{
+id: 60,
+materia: "Contabilidade",
+pergunta: "A Demonstração do Resultado do Exercício evidencia:",
+alternativas: [
+"Lucro ou prejuízo",
+"Apenas patrimônio",
+"Apenas caixa",
+"Apenas estoques",
+"Apenas tributos"
+],
+correta: 0,
+comentario: "DRE apura resultado."
+},
+
+{
+id: 61,
+materia: "Análise de Dados",
+pergunta: "A média dos números 10, 20 e 30 é:",
+alternativas: [
+"10",
+"15",
+"20",
+"25",
+"30"
+],
+correta: 2,
+comentario: "Média = (10+20+30)/3."
+},
+
+{
+id: 62,
+materia: "Análise de Dados",
+pergunta: "A mediana da sequência 2, 4, 6, 8, 10 é:",
+alternativas: [
+"2",
+"4",
+"6",
+"8",
+"10"
+],
+correta: 2,
+comentario: "Valor central."
+},
+
+{
+id: 63,
+materia: "Análise de Dados",
+pergunta: "Um gráfico de barras é utilizado para:",
+alternativas: [
+"Representar categorias",
+"Mostrar textos",
+"Escrever relatórios",
+"Calcular juros",
+"Armazenar dados"
+],
+correta: 0,
+comentario: "Comparação entre categorias."
+},
+
+{
+id: 64,
+materia: "Análise de Dados",
+pergunta: "Percentual significa:",
+alternativas: [
+"Valor por mil",
+"Valor por cem",
+"Valor absoluto",
+"Valor negativo",
+"Valor acumulado"
+],
+correta: 1,
+comentario: "Percentual = por cento."
+},
+
+{
+id: 65,
+materia: "Análise de Dados",
+pergunta: "25% de 200 corresponde a:",
+alternativas: [
+"25",
+"40",
+"50",
+"75",
+"100"
+],
+correta: 2,
+comentario: "200 x 0,25."
+},
+
+{
+id: 66,
+materia: "Análise de Dados",
+pergunta: "Moda é:",
+alternativas: [
+"Maior valor",
+"Menor valor",
+"Valor que mais se repete",
+"Média",
+"Mediana"
+],
+correta: 2,
+comentario: "Frequência máxima."
+},
+
+{
+id: 67,
+materia: "Análise de Dados",
+pergunta: "A soma dos ângulos internos de um triângulo é:",
+alternativas: [
+"90°",
+"120°",
+"180°",
+"270°",
+"360°"
+],
+correta: 2,
+comentario: "Regra geométrica básica."
+},
+
+{
+id: 68,
+materia: "Análise de Dados",
+pergunta: "Em uma tabela, linhas representam:",
+alternativas: [
+"Registros",
+"Fórmulas",
+"Gráficos",
+"Imagens",
+"Filtros"
+],
+correta: 0,
+comentario: "Cada linha é um registro."
+},
+
+{
+id: 69,
+materia: "Análise de Dados",
+pergunta: "A probabilidade de sair cara em uma moeda justa é:",
+alternativas: [
+"0%",
+"25%",
+"50%",
+"75%",
+"100%"
+],
+correta: 2,
+comentario: "1 possibilidade em 2."
+},
+
+{
+id: 70,
+materia: "Análise de Dados",
+pergunta: "A soma de todos os ângulos de um quadrado é:",
+alternativas: [
+"90°",
+"180°",
+"270°",
+"360°",
+"720°"
+],
+correta: 3,
+comentario: "4 ângulos de 90°."
+},
+
+
+{
+id: 71,
+materia: "Direito Penal",
+pergunta: "Segundo o Código Penal, considera-se crime:",
+alternativas: [
+"Qualquer conduta imoral",
+"A infração penal punida apenas com multa",
+"A infração penal a que a lei comina pena de reclusão ou detenção",
+"Qualquer descumprimento contratual",
+"Qualquer ilícito civil"
+],
+correta: 2,
+comentario: "Crime é infração penal punida com reclusão ou detenção."
+},
+
+{
+id: 72,
+materia: "Direito Penal",
+pergunta: "A imputabilidade penal, em regra, inicia-se aos:",
+alternativas: [
+"16 anos",
+"18 anos",
+"21 anos",
+"14 anos",
+"17 anos"
+],
+correta: 1,
+comentario: "Art. 27 do Código Penal."
+},
+
+{
+id: 73,
+materia: "Direito Penal",
+pergunta: "A legítima defesa está prevista como:",
+alternativas: [
+"Causa de aumento de pena",
+"Excludente de ilicitude",
+"Causa de diminuição de pena",
+"Crime privilegiado",
+"Qualificadora"
+],
+correta: 1,
+comentario: "Art. 23 do Código Penal."
+},
+
+{
+id: 74,
+materia: "Direito Penal",
+pergunta: "O erro de tipo essencial pode:",
+alternativas: [
+"Excluir o dolo",
+"Aumentar a pena",
+"Gerar reincidência",
+"Criar qualificadora",
+"Transformar crime em contravenção"
+],
+correta: 0,
+comentario: "Erro de tipo pode excluir o dolo."
+},
+
+{
+id: 75,
+materia: "Direito Penal",
+pergunta: "A desistência voluntária ocorre quando:",
+alternativas: [
+"O crime se consuma",
+"O agente impede o resultado após consumação",
+"O agente interrompe voluntariamente a execução",
+"O juiz absolve o acusado",
+"O MP arquiva o processo"
+],
+correta: 2,
+comentario: "Art. 15 do Código Penal."
+},
+
+{
+id: 76,
+materia: "Direito Penal",
+pergunta: "A pena de multa consiste em:",
+alternativas: [
+"Privação de liberdade",
+"Pagamento ao Estado",
+"Prestação de serviço",
+"Internação",
+"Advertência"
+],
+correta: 1,
+comentario: "Sanção pecuniária."
+},
+
+{
+id: 77,
+materia: "Direito Penal",
+pergunta: "O homicídio simples está previsto no:",
+alternativas: [
+"Art. 121 do CP",
+"Art. 155 do CP",
+"Art. 157 do CP",
+"Art. 213 do CP",
+"Art. 288 do CP"
+],
+correta: 0,
+comentario: "Artigo 121 do Código Penal."
+},
+
+{
+id: 78,
+materia: "Direito Penal",
+pergunta: "O furto caracteriza-se pela:",
+alternativas: [
+"Subtração mediante violência",
+"Subtração sem violência",
+"Fraude processual",
+"Apropriação culposa",
+"Coação moral"
+],
+correta: 1,
+comentario: "Art. 155 do CP."
+},
+
+{
+id: 79,
+materia: "Direito Penal",
+pergunta: "O roubo diferencia-se do furto porque envolve:",
+alternativas: [
+"Posse legítima",
+"Violência ou grave ameaça",
+"Crime culposo",
+"Erro de tipo",
+"Consentimento da vítima"
+],
+correta: 1,
+comentario: "Art. 157 do CP."
+},
+
+{
+id: 80,
+materia: "Direito Penal",
+pergunta: "A reincidência ocorre quando:",
+alternativas: [
+"O agente pratica novo crime após condenação definitiva anterior",
+"O agente pratica dois crimes no mesmo dia",
+"O crime é tentado",
+"O crime é culposo",
+"O réu é primário"
+],
+correta: 0,
+comentario: "Art. 63 do Código Penal."
+},
+
+
+{
+id: 81,
+materia: "Processo Penal",
+pergunta: "O inquérito policial é presidido por:",
+alternativas: [
+"Promotor de Justiça",
+"Juiz",
+"Delegado de Polícia",
+"Defensor Público",
+"Perito"
+],
+correta: 2,
+comentario: "Art. 4º do CPP."
+},
+
+{
+id: 82,
+materia: "Processo Penal",
+pergunta: "O inquérito policial possui natureza:",
+alternativas: [
+"Judicial",
+"Administrativa",
+"Legislativa",
+"Jurisdicional",
+"Constitucional"
+],
+correta: 1,
+comentario: "Procedimento administrativo."
+},
+
+{
+id: 83,
+materia: "Processo Penal",
+pergunta: "A ação penal pública é promovida pelo:",
+alternativas: [
+"Delegado",
+"Juiz",
+"Ministério Público",
+"Advogado",
+"Perito"
+],
+correta: 2,
+comentario: "Titular da ação penal pública."
+},
+
+{
+id: 84,
+materia: "Processo Penal",
+pergunta: "A prisão em flagrante ocorre quando:",
+alternativas: [
+"O agente é surpreendido na prática do crime",
+"O juiz expede mandado",
+"O MP oferece denúncia",
+"O delegado arquiva o feito",
+"A vítima comparece ao fórum"
+],
+correta: 0,
+comentario: "Art. 302 do CPP."
+},
+
+{
+id: 85,
+materia: "Processo Penal",
+pergunta: "A busca domiciliar, em regra, depende de:",
+alternativas: [
+"Autorização do prefeito",
+"Mandado judicial",
+"Autorização do MP",
+"Permissão da polícia militar",
+"Autorização do governador"
+],
+correta: 1,
+comentario: "Art. 5º, XI, CF."
+},
+
+{
+id: 86,
+materia: "Processo Penal",
+pergunta: "O arquivamento do inquérito policial é determinado por:",
+alternativas: [
+"Delegado",
+"Investigador",
+"Juiz",
+"Perito",
+"Escrivão"
+],
+correta: 2,
+comentario: "Mediante requerimento do MP."
+},
+
+{
+id: 87,
+materia: "Processo Penal",
+pergunta: "A prova pericial é realizada por:",
+alternativas: [
+"Testemunhas",
+"Peritos",
+"Promotores",
+"Juízes",
+"Jurados"
+],
+correta: 1,
+comentario: "Produzida por peritos."
+},
+
+{
+id: 88,
+materia: "Processo Penal",
+pergunta: "A denúncia é a peça inicial da:",
+alternativas: [
+"Ação penal pública",
+"Ação civil",
+"Execução fiscal",
+"Investigação policial",
+"Ação privada"
+],
+correta: 0,
+comentario: "Inicia a ação penal pública."
+},
+
+{
+id: 89,
+materia: "Processo Penal",
+pergunta: "A queixa-crime é utilizada na:",
+alternativas: [
+"Ação penal privada",
+"Ação penal pública",
+"Execução penal",
+"Ação constitucional",
+"Ação civil pública"
+],
+correta: 0,
+comentario: "Peça inicial da ação privada."
+},
+
+{
+id: 90,
+materia: "Processo Penal",
+pergunta: "O indiciamento é ato privativo do:",
+alternativas: [
+"Juiz",
+"Promotor",
+"Delegado de Polícia",
+"Defensor",
+"Perito"
+],
+correta: 2,
+comentario: "Competência do Delegado."
+},
+
+
+{
+id: 91,
+materia: "Constitucional",
+pergunta: "A Constituição Federal de 1988 é conhecida como:",
+alternativas: [
+"Constituição Imperial",
+"Constituição Cidadã",
+"Constituição Militar",
+"Constituição Parlamentar",
+"Constituição Provisória"
+],
+correta: 1,
+comentario: "A CF/88 ficou conhecida como Constituição Cidadã."
+},
+
+{
+id: 92,
+materia: "Constitucional",
+pergunta: "São Poderes da União:",
+alternativas: [
+"Executivo, Legislativo e Judiciário",
+"Executivo e Militar",
+"Legislativo e Popular",
+"Judiciário e Municipal",
+"Executivo e Sindical"
+],
+correta: 0,
+comentario: "Art. 2º da Constituição Federal."
+},
+
+{
+id: 93,
+materia: "Constitucional",
+pergunta: "O direito à liberdade está previsto no:",
+alternativas: [
+"Art. 5º da CF",
+"Art. 37 da CF",
+"Art. 144 da CF",
+"Art. 170 da CF",
+"Art. 225 da CF"
+],
+correta: 0,
+comentario: "Direito fundamental previsto no Art. 5º."
+},
+
+{
+id: 94,
+materia: "Constitucional",
+pergunta: "A segurança pública é dever:",
+alternativas: [
+"Somente da Polícia Militar",
+"Somente da Polícia Civil",
+"Somente do Estado",
+"Do Estado, direito e responsabilidade de todos",
+"Somente da União"
+],
+correta: 3,
+comentario: "Art. 144 da Constituição Federal."
+},
+
+{
+id: 95,
+materia: "Constitucional",
+pergunta: "O voto no Brasil é:",
+alternativas: [
+"Facultativo para todos",
+"Obrigatório apenas para mulheres",
+"Obrigatório para maiores de 18 e menores de 70 anos, salvo exceções",
+"Obrigatório apenas para servidores públicos",
+"Facultativo para maiores de 18 anos"
+],
+correta: 2,
+comentario: "Regra prevista na Constituição."
+},
+
+{
+id: 96,
+materia: "Constitucional",
+pergunta: "A inviolabilidade do domicílio está prevista no:",
+alternativas: [
+"Art. 1º",
+"Art. 3º",
+"Art. 5º",
+"Art. 37",
+"Art. 144"
+],
+correta: 2,
+comentario: "Garantia fundamental."
+},
+
+{
+id: 97,
+materia: "Constitucional",
+pergunta: "A tortura é considerada:",
+alternativas: [
+"Permitida em situações excepcionais",
+"Crime inafiançável e insuscetível de graça ou anistia",
+"Contravenção penal",
+"Infração administrativa",
+"Crime de menor potencial ofensivo"
+],
+correta: 1,
+comentario: "Art. 5º, XLIII."
+},
+
+{
+id: 98,
+materia: "Constitucional",
+pergunta: "A Polícia Civil é responsável por:",
+alternativas: [
+"Policiamento ostensivo",
+"Investigação criminal",
+"Defesa nacional",
+"Controle de fronteiras",
+"Fiscalização tributária"
+],
+correta: 1,
+comentario: "Função constitucional da Polícia Civil."
+},
+
+{
+id: 99,
+materia: "Constitucional",
+pergunta: "Ninguém será considerado culpado até:",
+alternativas: [
+"Receber denúncia",
+"Ser preso",
+"Trânsito em julgado da sentença penal condenatória",
+"Ser investigado",
+"Prestar depoimento"
+],
+correta: 2,
+comentario: "Princípio da presunção de inocência."
+},
+
+{
+id: 100,
+materia: "Constitucional",
+pergunta: "A dignidade da pessoa humana é:",
+alternativas: [
+"Objetivo da República",
+"Fundamento da República",
+"Princípio tributário",
+"Competência da União",
+"Direito social"
+],
+correta: 1,
+comentario: "Art. 1º, III da CF."
+},
+
+  {
+id: 101,
+materia: "Administrativo",
+pergunta: "O princípio da legalidade determina que o administrador público:",
+alternativas: [
+"Pode fazer tudo que a lei não proíbe",
+"Age conforme sua vontade",
+"Só pode agir conforme a lei autoriza",
+"Pode agir sem previsão legal",
+"Segue apenas normas internas"
+],
+correta: 2,
+comentario: "Princípio básico da Administração Pública."
+},
+
+{
+id: 102,
+materia: "Administrativo",
+pergunta: "O princípio da impessoalidade busca:",
+alternativas: [
+"Favorecer autoridades",
+"Beneficiar servidores",
+"Garantir atuação sem favorecimentos pessoais",
+"Beneficiar partidos políticos",
+"Promover interesses particulares"
+],
+correta: 2,
+comentario: "Atuação voltada ao interesse público."
+},
+
+{
+id: 103,
+materia: "Administrativo",
+pergunta: "A moralidade administrativa exige:",
+alternativas: [
+"Lucro estatal",
+"Conduta ética",
+"Promoção pessoal",
+"Discricionariedade absoluta",
+"Favorecimento político"
+],
+correta: 1,
+comentario: "Princípio previsto no Art. 37."
+},
+
+{
+id: 104,
+materia: "Administrativo",
+pergunta: "A publicidade dos atos administrativos visa:",
+alternativas: [
+"Ocultar informações",
+"Garantir transparência",
+"Promover governantes",
+"Evitar fiscalização",
+"Beneficiar particulares"
+],
+correta: 1,
+comentario: "Transparência da Administração."
+},
+
+{
+id: 105,
+materia: "Administrativo",
+pergunta: "A eficiência foi incluída expressamente no Art. 37 pela:",
+alternativas: [
+"CF de 1988",
+"EC 19/1998",
+"EC 45/2004",
+"Lei 8.112",
+"Lei de Licitações"
+],
+correta: 1,
+comentario: "Reforma Administrativa."
+},
+
+{
+id: 106,
+materia: "Administrativo",
+pergunta: "Servidor público é aquele que:",
+alternativas: [
+"Exerce atividade privada",
+"Possui vínculo com a Administração Pública",
+"Atua apenas na iniciativa privada",
+"É contratado por empresa estrangeira",
+"Não recebe remuneração"
+],
+correta: 1,
+comentario: "Possui vínculo funcional com o Estado."
+},
+
+{
+id: 107,
+materia: "Administrativo",
+pergunta: "A licitação tem por objetivo:",
+alternativas: [
+"Favorecer empresas",
+"Selecionar proposta mais vantajosa",
+"Evitar concorrência",
+"Beneficiar gestores",
+"Promover publicidade pessoal"
+],
+correta: 1,
+comentario: "Princípio da proposta mais vantajosa."
+},
+
+{
+id: 108,
+materia: "Administrativo",
+pergunta: "A administração pública direta é composta por:",
+alternativas: [
+"Ministérios e Secretarias",
+"Empresas privadas",
+"ONGs",
+"Associações",
+"Cooperativas"
+],
+correta: 0,
+comentario: "Integram a estrutura do Estado."
+},
+
+{
+id: 109,
+materia: "Administrativo",
+pergunta: "A autotutela permite à Administração:",
+alternativas: [
+"Julgar crimes",
+"Revogar ou anular seus próprios atos",
+"Legislar",
+"Condenar judicialmente",
+"Criar tributos"
+],
+correta: 1,
+comentario: "Súmulas 346 e 473 do STF."
+},
+
+{
+id: 110,
+materia: "Administrativo",
+pergunta: "O poder disciplinar permite:",
+alternativas: [
+"Aplicar sanções a servidores e particulares vinculados",
+"Julgar ações penais",
+"Criar leis",
+"Decretar prisão",
+"Arrecadar tributos"
+],
+correta: 0,
+comentario: "Poder disciplinar da Administração."
+},
+
+
+
+
+
+
+

@@ -951,9 +951,8 @@ alert(
 // ===============================
 // INICIALIZAÇÃO SEGURA
 // ===============================
-
-function mostrar(secao) {
-  const secoes = [
+function mostrar(secao){
+  [
     home,
     configuracao,
     simulado,
@@ -961,13 +960,11 @@ function mostrar(secao) {
     redacaoArea,
     tafArea,
     historicoArea
-  ];
-
-  secoes.forEach(sec => {
-    if (sec) sec.classList.add("hidden");
+  ].forEach(sec=>{
+    if(sec) sec.classList.add("hidden");
   });
 
-  if (secao) {
+  if(secao){
     secao.classList.remove("hidden");
   }
 }

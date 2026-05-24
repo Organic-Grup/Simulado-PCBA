@@ -696,7 +696,7 @@ alert(
 );
 
 // =====================================
-// CARREGAR SIMULADO SALVO
+// CARREGAR SIMULADO SALVO 
 // =====================================
 
 function carregarSimuladoSalvo(){
@@ -954,13 +954,10 @@ alert(
 
 carregarHistorico();
 
+carregarSimuladoSalvo();
+
 mostrar(home);
 
 console.log(
 "PCBA Investigador PRO carregado com sucesso."
 );
-
-
-
-
-

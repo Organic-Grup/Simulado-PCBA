@@ -75,7 +75,56 @@ Math.random()*(i+1)
 return array;
 
 }
+// =====================================
+// GERAR SIMULADO
+// =====================================
 
+function gerarSimulado(){
+
+let base = [...bancoQuestoes];
+
+const materia =
+document.getElementById(
+"filtroMateria"
+).value;
+
+if(materia !== "todas"){
+
+base = base.filter(
+q => q.materia === materia
+);
+
+}
+
+if(base.length === 0){
+
+alert(
+"Não existem questões cadastradas para esta matéria."
+);
+
+return;
+
+}
+
+embaralhar(base);
+
+questoesAtuais = base.slice(
+0,
+Math.min(
+QUESTOES_POR_PROVA,
+base.length
+)
+);
+
+renderizarQuestoes();
+
+atualizarRespondidas();
+
+iniciarCronometro();
+
+mostrar(simulado);
+
+}
 // =====================================
 // HISTÓRICO
 // =====================================

@@ -1,10 +1,4 @@
-// =====================================
-// PCBA INVESTIGADOR PRO - APP JS LIMPO
-// =====================================
-
-// CONFIGURAÇÕES
 let QUESTOES_POR_PROVA = 100;
-let modoConcurso = false;
 let tempoRestante = 10800;
 let cronometro = null;
 let questoesAtuais = [];
@@ -14,127 +8,32 @@ const home = document.getElementById("home");
 const configuracao = document.getElementById("configuracao");
 const simulado = document.getElementById("simulado");
 const resultado = document.getElementById("resultado");
+const redacaoArea = document.getElementById("redacaoArea");
+const tafArea = document.getElementById("tafArea");
+const historicoArea = document.getElementById("historicoArea");
+
 const questoesDiv = document.getElementById("questoes");
 
 const timer = document.getElementById("timer");
 const respondidas = document.getElementById("respondidas");
 const totalQuestoes = document.getElementById("totalQuestoes");
 
-// =====================================
-// BANCO DE QUESTÕES (EXPANDIDO PC-BA / AOCP STYLE)
-// =====================================
+// MOSTRAR SEÇÕES (CORRIGIDO SEM MEXER NA ESTRUTURA)
+function mostrar(secao){
+[
+home,
+configuracao,
+simulado,
+resultado,
+redacaoArea,
+tafArea,
+historicoArea
+].forEach(s => s.classList.add("hidden"));
 
-const bancoQuestoes = [
-{
-id: 1,
-materia: "Português",
-pergunta: "A função referencial da linguagem tem como objetivo:",
-alternativas: [
-"Expressar emoções",
-"Transmitir informações objetivas",
-"Convencer o leitor",
-"Criar efeitos poéticos",
-"Manter contato"
-],
-correta: 1,
-comentario: "Função referencial = informar objetivamente."
-},
-
-{
-id: 2,
-materia: "Direito Penal",
-pergunta: "O crime tentado ocorre quando:",
-alternativas: [
-"O agente pensa no crime",
-"O crime se consuma",
-"A execução é iniciada, mas não se consuma por circunstâncias alheias à vontade do agente",
-"O agente desiste voluntariamente",
-"O juiz arquiva o caso"
-],
-correta: 2,
-comentario: "Art. 14, II do CP."
-},
-
-{
-id: 3,
-materia: "Processo Penal",
-pergunta: "O inquérito policial tem natureza:",
-alternativas: [
-"Judicial",
-"Administrativa",
-"Legislativa",
-"Constitucional",
-"Privada"
-],
-correta: 1,
-comentario: "É procedimento administrativo investigatório."
-},
-
-{
-id: 4,
-materia: "Constitucional",
-pergunta: "O direito à vida está previsto principalmente em:",
-alternativas: [
-"Art. 5º da CF",
-"Art. 37 da CF",
-"Código Penal",
-"Código Civil",
-"CPP"
-],
-correta: 0,
-comentario: "Art. 5º da Constituição Federal."
-},
-
-{
-id: 5,
-materia: "Administrativo",
-pergunta: "O princípio da moralidade exige:",
-alternativas: [
-"Lucro estatal",
-"Conduta ética da administração pública",
-"Privatização",
-"Autonomia financeira",
-"Competição"
-],
-correta: 1,
-comentario: "Art. 37 CF."
-},
-
-{
-id: 6,
-materia: "Informática",
-pergunta: "Firewall é utilizado para:",
-alternativas: [
-"Editar arquivos",
-"Proteger rede contra acessos não autorizados",
-"Aumentar memória",
-"Instalar programas",
-"Criar senhas"
-],
-correta: 1,
-comentario: "Segurança de rede."
-},
-
-{
-id: 7,
-materia: "Direitos Humanos",
-pergunta: "A Declaração Universal dos Direitos Humanos foi criada em:",
-alternativas: [
-"1945",
-"1948",
-"1964",
-"1988",
-"2001"
-],
-correta: 1,
-comentario: "ONU, 1948."
+secao.classList.remove("hidden");
 }
-];
 
-// =====================================
-// FUNÇÕES BASE
-// =====================================
-
+// EMBARALHAR
 function embaralhar(array){
 for(let i=array.length-1;i>0;i--){
 const j=Math.floor(Math.random()*(i+1));
@@ -143,17 +42,7 @@ const j=Math.floor(Math.random()*(i+1));
 return array;
 }
 
-function mostrar(secao){
-[home,configuracao,simulado,resultado].forEach(s=>{
-if(s) s.classList.add("hidden");
-});
-secao.classList.remove("hidden");
-}
-
-// =====================================
 // GERAR SIMULADO
-// =====================================
-
 function gerarSimulado(){
 let base = [...bancoQuestoes];
 
@@ -168,10 +57,7 @@ iniciarCronometro();
 mostrar(simulado);
 }
 
-// =====================================
-// RENDER QUESTÕES
-// =====================================
-
+// RENDER
 function renderizarQuestoes(){
 questoesDiv.innerHTML = "";
 
@@ -179,17 +65,14 @@ questoesAtuais.forEach((q,i)=>{
 const div = document.createElement("div");
 div.className = "questao";
 
-let html = `
-<strong>${i+1}. ${q.pergunta}</strong><br><br>
-`;
+let html = `<strong>${i+1}. ${q.pergunta}</strong><br><br>`;
 
 q.alternativas.forEach((alt,j)=>{
 html += `
 <label class="alternativa">
 <input type="radio" name="q${i}" value="${j}" onchange="atualizarRespondidas()">
 ${alt}
-</label>
-`;
+</label>`;
 });
 
 div.innerHTML = html;
@@ -199,19 +82,13 @@ questoesDiv.appendChild(div);
 totalQuestoes.textContent = questoesAtuais.length;
 }
 
-// =====================================
-// CONTROLE
-// =====================================
-
+// RESPONDIDAS
 function atualizarRespondidas(){
 const marcadas = document.querySelectorAll("input[type='radio']:checked").length;
 respondidas.textContent = marcadas;
 }
 
-// =====================================
 // CRONÔMETRO
-// =====================================
-
 function iniciarCronometro(){
 clearInterval(cronometro);
 tempoRestante = 10800;
@@ -236,10 +113,7 @@ corrigirProva();
 },1000);
 }
 
-// =====================================
 // CORREÇÃO
-// =====================================
-
 function corrigirProva(){
 clearInterval(cronometro);
 
@@ -264,16 +138,28 @@ document.getElementById("percentual").textContent=
 mostrar(resultado);
 }
 
-// =====================================
 // EVENTOS
-// =====================================
-
 document.getElementById("btnIniciar").addEventListener("click", ()=>{
-const qtd=document.getElementById("quantidadeQuestoes").value;
-QUESTOES_POR_PROVA=parseInt(qtd);
+QUESTOES_POR_PROVA = parseInt(document.getElementById("quantidadeQuestoes").value);
 gerarSimulado();
 });
 
 document.getElementById("btnNovoSimulado").addEventListener("click", ()=>{
+mostrar(configuracao);
+});
+
+document.getElementById("btnRedacao").addEventListener("click", ()=>{
+mostrar(redacaoArea);
+});
+
+document.getElementById("btnTAF").addEventListener("click", ()=>{
+mostrar(tafArea);
+});
+
+document.getElementById("btnHistorico").addEventListener("click", ()=>{
+mostrar(historicoArea);
+});
+
+document.getElementById("btnModoConcurso").addEventListener("click", ()=>{
 mostrar(configuracao);
 });

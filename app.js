@@ -163,3 +163,130 @@ mostrar(historicoArea);
 document.getElementById("btnModoConcurso").addEventListener("click", ()=>{
 mostrar(configuracao);
 });
+
+// FINALIZAR PROVA
+
+document.getElementById("btnFinalizar").addEventListener("click", ()=>{
+corrigirProva();
+});
+
+// VOLTAR MENU
+
+document.getElementById("voltarHomeRedacao").addEventListener("click", ()=>{
+mostrar(home);
+});
+
+document.getElementById("voltarHomeTAF").addEventListener("click", ()=>{
+mostrar(home);
+});
+
+document.getElementById("voltarHomeHistorico").addEventListener("click", ()=>{
+mostrar(home);
+});
+
+// TEMA CLARO/ESCURO
+
+document.getElementById("btnTema").addEventListener("click", ()=>{
+document.body.classList.toggle("dark");
+
+localStorage.setItem(
+"tema",
+document.body.classList.contains("dark")
+? "dark"
+: "light"
+);
+});
+
+if(localStorage.getItem("tema")==="dark"){
+document.body.classList.add("dark");
+}
+
+// SALVAR REDAÇÃO
+
+document.getElementById("salvarRedacao").addEventListener("click", ()=>{
+
+const texto =
+document.getElementById("redacaoTexto").value;
+
+localStorage.setItem("redacaoPCBA", texto);
+
+alert("Redação salva.");
+});
+
+// CARREGAR REDAÇÃO
+
+const redacaoSalva =
+localStorage.getItem("redacaoPCBA");
+
+if(redacaoSalva){
+document.getElementById("redacaoTexto").value =
+redacaoSalva;
+}
+
+// CONTADOR DE PALAVRAS
+
+document.getElementById("redacaoTexto")
+.addEventListener("input", ()=>{
+
+const texto =
+document.getElementById("redacaoTexto")
+.value
+.trim();
+
+const palavras =
+texto.length === 0
+? 0
+: texto.split(/\s+/).length;
+
+document.getElementById(
+"contadorPalavras"
+).textContent = palavras;
+
+});
+
+// SALVAR TAF
+
+document.getElementById("salvarTAF").addEventListener("click", ()=>{
+
+const dados = {
+
+corrida:
+document.getElementById("corrida").value,
+
+abdominal:
+document.getElementById("abdominal").value,
+
+barra:
+document.getElementById("barra").value
+
+};
+
+localStorage.setItem(
+"tafPCBA",
+JSON.stringify(dados)
+);
+
+alert("TAF salvo.");
+});
+
+// CARREGAR TAF
+
+const tafSalvo =
+localStorage.getItem("tafPCBA");
+
+if(tafSalvo){
+
+const dados =
+JSON.parse(tafSalvo);
+
+document.getElementById("corrida").value =
+dados.corrida || "";
+
+document.getElementById("abdominal").value =
+dados.abdominal || "";
+
+document.getElementById("barra").value =
+dados.barra || "";
+
+}
+

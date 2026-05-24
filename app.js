@@ -828,3 +828,75 @@ mostrar(home);
 console.log(
 "PCBA Investigador PRO carregado."
 );
+// =====================================
+// RESULTADO
+// =====================================
+
+const btnVoltarInicio =
+document.getElementById(
+"btnVoltarInicio"
+);
+
+if(btnVoltarInicio){
+
+btnVoltarInicio.addEventListener(
+"click",
+()=>{
+
+mostrar(home);
+
+}
+);
+
+}
+
+const btnRefazer =
+document.getElementById(
+"btnRefazer"
+);
+
+if(btnRefazer){
+
+btnRefazer.addEventListener(
+"click",
+()=>{
+
+gerarSimulado();
+
+}
+);
+
+}
+// =====================================
+// LIMPAR HISTÓRICO
+// =====================================
+
+const btnLimparHistorico =
+document.getElementById(
+"limparHistorico"
+);
+
+if(btnLimparHistorico){
+
+btnLimparHistorico.addEventListener(
+"click",
+()=>{
+
+if(
+confirm(
+"Deseja apagar todo o histórico?"
+)
+){
+
+localStorage.removeItem(
+"historicoPCBA"
+);
+
+carregarHistorico();
+
+}
+
+}
+);
+
+}

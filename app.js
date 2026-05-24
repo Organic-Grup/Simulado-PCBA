@@ -952,29 +952,22 @@ alert(
 // INICIALIZAÇÃO SEGURA
 // ===============================
 
-function iniciarApp() {
-  carregarHistorico();
+function mostrar(secao) {
+  const secoes = [
+    home,
+    configuracao,
+    simulado,
+    resultado,
+    redacaoArea,
+    tafArea,
+    historicoArea
+  ];
 
-  const salvo = localStorage.getItem("simuladoSalvo");
+  secoes.forEach(sec => {
+    if (sec) sec.classList.add("hidden");
+  });
 
-  if (!salvo) {
-    mostrar(home);
-    console.log("PCBA Investigador PRO carregado com sucesso.");
-    return;
+  if (secao) {
+    secao.classList.remove("hidden");
   }
-
-  const continuar = confirm(
-    "Você tem um simulado salvo. Deseja continuar de onde parou?"
-  );
-
-  if (continuar) {
-    carregarSimuladoSalvo();
-  } else {
-    localStorage.removeItem("simuladoSalvo");
-    mostrar(home);
-  }
-
-  console.log("PCBA Investigador PRO carregado com sucesso.");
 }
-
-iniciarApp();

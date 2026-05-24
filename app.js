@@ -328,7 +328,11 @@ localStorage.getItem(
 );
 
 historico.unshift({
+if(historico.length > 50){
 
+historico.pop();
+
+}
 data:
 new Date()
 .toLocaleString(),
@@ -891,6 +895,40 @@ confirm(
 localStorage.removeItem(
 "historicoPCBA"
 );
+
+  // =====================================
+// SALVAR SIMULADO
+// =====================================
+
+const btnSalvarSimulado =
+document.getElementById(
+"btnSalvarSimulado"
+);
+
+if(btnSalvarSimulado){
+
+btnSalvarSimulado.addEventListener(
+"click",
+()=>{
+
+localStorage.setItem(
+
+"simuladoSalvo",
+
+JSON.stringify(
+questoesAtuais
+)
+
+);
+
+alert(
+"Simulado salvo."
+);
+
+}
+);
+
+} 
 
 carregarHistorico();
 

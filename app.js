@@ -439,7 +439,77 @@ mostrar(home);
 );
 
 }
+// =====================================
+// HISTÓRICO
+// =====================================
 
+function carregarHistorico(){
+
+const container =
+document.getElementById(
+"historicoResultados"
+);
+
+if(!container){
+return;
+}
+
+const historico = JSON.parse(
+localStorage.getItem(
+"historicoPCBA"
+) || "[]"
+);
+
+container.innerHTML = "";
+
+if(historico.length === 0){
+
+container.innerHTML = `
+
+<div class="historico-item">
+
+Nenhum resultado salvo.
+
+</div>
+
+`;
+
+return;
+
+}
+
+historico.forEach(item=>{
+
+container.innerHTML += `
+
+<div class="historico-item">
+
+<strong>
+${item.data}
+</strong>
+
+<br><br>
+
+Acertos:
+${item.acertos}
+
+<br>
+
+Erros:
+${item.erros}
+
+<br>
+
+Aproveitamento:
+${item.percentual}%
+
+</div>
+
+`;
+
+});
+
+}
 // =====================================
 // BOTÃO REFAZER SIMULADO
 // =====================================

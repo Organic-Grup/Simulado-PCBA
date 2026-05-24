@@ -953,13 +953,23 @@ alert(
 // =====================================
 carregarHistorico();
 
-if(
-localStorage.getItem(
-"simuladoSalvo"
-)
-){
+mostrar(home);
+
+const salvo = localStorage.getItem("simuladoSalvo");
+
+if (salvo) {
+
+const continuar = confirm(
+"Você tem um simulado salvo. Deseja continuar de onde parou?"
+);
+
+if (continuar) {
 carregarSimuladoSalvo();
-}else{
+} else {
+mostrar(home);
+}
+
+} else {
 mostrar(home);
 }
 

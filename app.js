@@ -100,8 +100,16 @@ Math.min(
 QUESTOES_POR_PROVA,
 base.length
 )
+);if  
+  if(base.length === 0){
+
+alert(
+"Não existem questões dessa matéria."
 );
 
+return;
+
+}
 renderizarQuestoes();
 
 atualizarRespondidas();

@@ -1,4 +1,4 @@
-um// =====================================
+// =====================================
 // PCBA INVESTIGADOR PRO
 // APP.JS OFICIAL
 // =====================================
@@ -963,6 +963,4 @@ carregarSimuladoSalvo();
 mostrar(home);
 }
 
-(
-"PCBA Investigador PRO carregado com sucesso."
-);
+console.log("PCBA Investigador PRO carregado com sucesso.");

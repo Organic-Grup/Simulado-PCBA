@@ -25,6 +25,7 @@ const questoesDiv = document.getElementById("questoes");
 const timer = document.getElementById("timer");
 const respondidas = document.getElementById("respondidas");
 const totalQuestoes = document.getElementById("totalQuestoes");
+
 // =====================================
 // MOSTRAR SEÇÕES
 // =====================================
@@ -61,7 +62,8 @@ function embaralhar(array){
 
 for(let i=array.length-1;i>0;i--){
 
-const j=Math.floor(
+const j =
+Math.floor(
 Math.random()*(i+1)
 );
 
@@ -85,11 +87,10 @@ document.getElementById(
 "historicoResultados"
 );
 
-if(!container){
-return;
-}
+if(!container) return;
 
-const historico = JSON.parse(
+const historico =
+JSON.parse(
 localStorage.getItem(
 "historicoPCBA"
 ) || "[]"
@@ -100,11 +101,9 @@ container.innerHTML = "";
 if(historico.length === 0){
 
 container.innerHTML = `
-
 <div class="historico-item">
 Nenhum resultado salvo.
 </div>
-
 `;
 
 return;
@@ -114,135 +113,20 @@ return;
 historico.forEach(item=>{
 
 container.innerHTML += `
-
 <div class="historico-item">
-
 <strong>${item.data}</strong>
-
 <br><br>
-
-Acertos:
-${item.acertos}
-
+Acertos: ${item.acertos}
 <br>
-
-Erros:
-${item.erros}
-
+Erros: ${item.erros}
 <br>
-
-Aproveitamento:
-${item.percentual}%
-
+Aproveitamento: ${item.percentual}%
 </div>
-
 `;
 
 });
 
 }
-// =====================================
-// MOSTRAR SEÇÕES
-// =====================================
-
-function mostrar(secao){
-
-[
-home,
-configuracao,
-simulado,
-resultado,
-redacaoArea,
-tafArea,
-historicoArea
-].forEach(s=>{
-
-if(s){
-s.classList.add("hidden");
-}
-
-});
-
-if(secao){
-secao.classList.remove("hidden");
-}
-
-}
-
-// =====================================
-// EMBARALHAR
-// =====================================
-
-function embaralhar(array){
-
-for(let i=array.length-1;i>0;i--){
-
-const j=Math.floor(
-Math.random()*(i+1)
-);
-
-[array[i],array[j]]=
-[array[j],array[i]];
-
-}
-
-return array;
-
-}
-
-// =====================================
-// GERAR SIMULADO
-// =====================================
-
-function gerarSimulado(){
-
-let base = [...bancoQuestoes];
-
-const materia =
-document.getElementById(
-"filtroMateria"
-).value;
-
-if(materia !== "todas"){
-
-base = base.filter(
-q => q.materia === materia
-);
-
-}
-
-// NÃO EXISTEM QUESTÕES
-
-if(base.length === 0){
-
-alert(
-"Não existem questões cadastradas para esta matéria."
-);
-
-return;
-
-}
-
-embaralhar(base);
-
-questoesAtuais = base.slice(
-0,
-Math.min(
-QUESTOES_POR_PROVA,
-base.length
-)
-);
-
-renderizarQuestoes();
-
-atualizarRespondidas();
-
-iniciarCronometro();
-
-mostrar(simulado);
-
-}
-
 // =====================================
 // RENDERIZAR QUESTÕES
 // =====================================
@@ -318,10 +202,7 @@ marcadas;
 const percentual =
 
 questoesAtuais.length > 0
-
-? (marcadas /
-questoesAtuais.length) * 100
-
+? (marcadas / questoesAtuais.length) * 100
 : 0;
 
 const barra =
@@ -352,17 +233,17 @@ cronometro = setInterval(()=>{
 
 tempoRestante--;
 
-let h =
+const h =
 Math.floor(
 tempoRestante / 3600
 );
 
-let m =
+const m =
 Math.floor(
 (tempoRestante % 3600) / 60
 );
 
-let s =
+const s =
 tempoRestante % 60;
 
 timer.textContent =
@@ -389,9 +270,15 @@ corrigirProva();
 
 }
 
+// =====================================
+// CORRIGIR PROVA
+// =====================================
+
 function corrigirProva(){
 
-clearInterval(cronometro);
+clearInterval(
+cronometro
+);
 
 let acertos = 0;
 let erros = 0;
@@ -423,7 +310,9 @@ const percentualFinal =
 questoesAtuais.length > 0
 
 ? (
-(acertos / questoesAtuais.length) * 100
+(acertos /
+questoesAtuais.length)
+* 100
 ).toFixed(1)
 
 : 0;
@@ -441,9 +330,10 @@ document.getElementById(
 ).textContent =
 percentualFinal + "%";
 
-// SALVAR HISTÓRICO
+// HISTÓRICO
 
-const historico = JSON.parse(
+const historico =
+JSON.parse(
 localStorage.getItem(
 "historicoPCBA"
 ) || "[]"
@@ -452,7 +342,8 @@ localStorage.getItem(
 historico.unshift({
 
 data:
-new Date().toLocaleString(),
+new Date()
+.toLocaleString(),
 
 acertos,
 
@@ -462,8 +353,6 @@ percentual:
 percentualFinal
 
 });
-
-// Limita em 50 resultados
 
 if(historico.length > 50){
 
@@ -481,7 +370,7 @@ historico
 
 );
 
-// GABARITO COMENTADO
+// GABARITO
 
 const gabarito =
 document.getElementById(
@@ -499,7 +388,7 @@ gabarito.innerHTML += `
 <div class="gabarito-item">
 
 <strong>
-Questão ${i+1}
+Questão ${i + 1}
 </strong>
 
 <br><br>
@@ -510,13 +399,11 @@ ${q.materia}
 <br><br>
 
 <b>Resposta correta:</b>
-
 ${q.alternativas[q.correta]}
 
 <br><br>
 
 <b>Comentário:</b>
-
 ${q.comentario || "Sem comentário."}
 
 </div>
@@ -534,17 +421,106 @@ mostrar(resultado);
 }
 
 // =====================================
-// BOTÃO VOLTAR AO MENU
+// EVENTOS PRINCIPAIS
 // =====================================
 
-const btnVoltarInicio =
 document.getElementById(
-"btnVoltarInicio"
+"btnIniciar"
+)?.addEventListener(
+"click",
+()=>{
+
+QUESTOES_POR_PROVA =
+parseInt(
+document.getElementById(
+"quantidadeQuestoes"
+).value
+) || 100;
+
+gerarSimulado();
+
+}
 );
 
-if(btnVoltarInicio){
+document.getElementById(
+"btnNovoSimulado"
+)?.addEventListener(
+"click",
+()=>{
 
-btnVoltarInicio.addEventListener(
+mostrar(configuracao);
+
+}
+);
+
+document.getElementById(
+"btnModoConcurso"
+)?.addEventListener(
+"click",
+()=>{
+
+mostrar(configuracao);
+
+}
+);
+
+document.getElementById(
+"btnRedacao"
+)?.addEventListener(
+"click",
+()=>{
+
+mostrar(redacaoArea);
+
+}
+);
+
+document.getElementById(
+"btnTAF"
+)?.addEventListener(
+"click",
+()=>{
+
+mostrar(tafArea);
+
+}
+);
+
+document.getElementById(
+"btnHistorico"
+)?.addEventListener(
+"click",
+()=>{
+
+carregarHistorico();
+
+mostrar(historicoArea);
+
+}
+);
+
+// =====================================
+// FINALIZAR PROVA
+// =====================================
+
+document.getElementById(
+"btnFinalizar"
+)?.addEventListener(
+"click",
+()=>{
+
+corrigirProva();
+
+}
+);
+
+// =====================================
+// BOTÕES RESULTADO
+// =====================================
+
+document.getElementById(
+"btnVoltarInicio"
+)?.addEventListener(
 "click",
 ()=>{
 
@@ -553,90 +529,9 @@ mostrar(home);
 }
 );
 
-}
-// =====================================
-// HISTÓRICO
-// =====================================
-
-function carregarHistorico(){
-
-const container =
-document.getElementById(
-"historicoResultados"
-);
-
-if(!container){
-return;
-}
-
-const historico = JSON.parse(
-localStorage.getItem(
-"historicoPCBA"
-) || "[]"
-);
-
-container.innerHTML = "";
-
-if(historico.length === 0){
-
-container.innerHTML = `
-
-<div class="historico-item">
-
-Nenhum resultado salvo.
-
-</div>
-
-`;
-
-return;
-
-}
-
-historico.forEach(item=>{
-
-container.innerHTML += `
-
-<div class="historico-item">
-
-<strong>
-${item.data}
-</strong>
-
-<br><br>
-
-Acertos:
-${item.acertos}
-
-<br>
-
-Erros:
-${item.erros}
-
-<br>
-
-Aproveitamento:
-${item.percentual}%
-
-</div>
-
-`;
-
-});
-
-}
-// =====================================
-// BOTÃO REFAZER SIMULADO
-// =====================================
-
-const btnRefazer =
 document.getElementById(
 "btnRefazer"
-);
-
-if(btnRefazer){
-
-btnRefazer.addEventListener(
+)?.addEventListener(
 "click",
 ()=>{
 
@@ -645,28 +540,58 @@ gerarSimulado();
 }
 );
 
+// =====================================
+// BOTÕES VOLTAR
+// =====================================
+
+document.getElementById(
+"voltarHomeRedacao"
+)?.addEventListener(
+"click",
+()=>{
+
+mostrar(home);
+
 }
+);
+
+document.getElementById(
+"voltarHomeTAF"
+)?.addEventListener(
+"click",
+()=>{
+
+mostrar(home);
+
+}
+);
+
+document.getElementById(
+"voltarHomeHistorico"
+)?.addEventListener(
+"click",
+()=>{
+
+mostrar(home);
+
+}
+);
 
 // =====================================
 // LIMPAR HISTÓRICO
 // =====================================
 
-const btnLimparHistorico =
 document.getElementById(
 "limparHistorico"
-);
-
-if(btnLimparHistorico){
-
-btnLimparHistorico.addEventListener(
+)?.addEventListener(
 "click",
 ()=>{
 
-const confirmar = confirm(
+if(
+confirm(
 "Deseja apagar todo o histórico?"
-);
-
-if(confirmar){
+)
+){
 
 localStorage.removeItem(
 "historicoPCBA"
@@ -683,29 +608,24 @@ alert(
 }
 );
 
-}
-
 // =====================================
 // SALVAR SIMULADO
 // =====================================
 
-const btnSalvarSimulado =
 document.getElementById(
 "btnSalvarSimulado"
-);
-
-if(btnSalvarSimulado){
-
-btnSalvarSimulado.addEventListener(
+)?.addEventListener(
 "click",
 ()=>{
 
 const dados = {
 
-questoes: questoesAtuais,
+questoes:
+questoesAtuais,
 
 data:
-new Date().toLocaleString()
+new Date()
+.toLocaleString()
 
 };
 
@@ -726,10 +646,8 @@ alert(
 }
 );
 
-}
-
 // =====================================
-// CARREGAR SIMULADO SALVO (OPCIONAL)
+// CARREGAR SIMULADO SALVO
 // =====================================
 
 function carregarSimuladoSalvo(){
@@ -777,7 +695,212 @@ erro
 }
 
 // =====================================
-// INICIALIZAÇÃO FINAL
+// TEMA ESCURO
+// =====================================
+
+document.getElementById(
+"btnTema"
+)?.addEventListener(
+"click",
+()=>{
+
+document.body
+.classList.toggle(
+"dark"
+);
+
+localStorage.setItem(
+
+"tema",
+
+document.body
+.classList.contains(
+"dark"
+)
+? "dark"
+: "light"
+
+);
+
+}
+);
+
+if(
+localStorage.getItem(
+"tema"
+) === "dark"
+){
+
+document.body
+.classList.add(
+"dark"
+);
+
+}
+
+// =====================================
+// REDAÇÃO
+// =====================================
+
+const textareaRedacao =
+document.getElementById(
+"redacaoTexto"
+);
+
+const contadorPalavras =
+document.getElementById(
+"contadorPalavras"
+);
+
+if(textareaRedacao){
+
+const redacaoSalva =
+localStorage.getItem(
+"redacaoPCBA"
+);
+
+if(redacaoSalva){
+
+textareaRedacao.value =
+redacaoSalva;
+
+}
+
+function atualizarContador(){
+
+const texto =
+textareaRedacao.value.trim();
+
+const palavras =
+
+texto === ""
+? 0
+: texto.split(/\s+/).length;
+
+if(contadorPalavras){
+
+contadorPalavras.textContent =
+palavras;
+
+}
+
+}
+
+atualizarContador();
+
+textareaRedacao.addEventListener(
+"input",
+atualizarContador
+);
+
+}
+
+document.getElementById(
+"salvarRedacao"
+)?.addEventListener(
+"click",
+()=>{
+
+localStorage.setItem(
+
+"redacaoPCBA",
+
+document.getElementById(
+"redacaoTexto"
+).value
+
+);
+
+alert(
+"Redação salva com sucesso."
+);
+
+}
+);
+
+// =====================================
+// TAF
+// =====================================
+
+const tafSalvo =
+localStorage.getItem(
+"tafPCBA"
+);
+
+if(tafSalvo){
+
+try{
+
+const dados =
+JSON.parse(tafSalvo);
+
+document.getElementById(
+"corrida"
+).value =
+dados.corrida || "";
+
+document.getElementById(
+"abdominal"
+).value =
+dados.abdominal || "";
+
+document.getElementById(
+"barra"
+).value =
+dados.barra || "";
+
+}catch(e){
+
+console.error(e);
+
+}
+
+}
+
+document.getElementById(
+"salvarTAF"
+)?.addEventListener(
+"click",
+()=>{
+
+const dados = {
+
+corrida:
+document.getElementById(
+"corrida"
+).value,
+
+abdominal:
+document.getElementById(
+"abdominal"
+).value,
+
+barra:
+document.getElementById(
+"barra"
+).value
+
+};
+
+localStorage.setItem(
+
+"tafPCBA",
+
+JSON.stringify(
+dados
+)
+
+);
+
+alert(
+"Evolução TAF salva."
+);
+
+}
+);
+
+// =====================================
+// INICIALIZAÇÃO
 // =====================================
 
 carregarHistorico();
@@ -785,8 +908,10 @@ carregarHistorico();
 mostrar(home);
 
 console.log(
-"PCBA Investigador PRO iniciado com sucesso."
+"PCBA Investigador PRO carregado com sucesso."
 );
+
+
 
 
 

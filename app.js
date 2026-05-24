@@ -25,7 +25,122 @@ const questoesDiv = document.getElementById("questoes");
 const timer = document.getElementById("timer");
 const respondidas = document.getElementById("respondidas");
 const totalQuestoes = document.getElementById("totalQuestoes");
+// =====================================
+// MOSTRAR SEÇÕES
+// =====================================
 
+function mostrar(secao){
+
+[
+home,
+configuracao,
+simulado,
+resultado,
+redacaoArea,
+tafArea,
+historicoArea
+].forEach(sec=>{
+
+if(sec){
+sec.classList.add("hidden");
+}
+
+});
+
+if(secao){
+secao.classList.remove("hidden");
+}
+
+}
+
+// =====================================
+// EMBARALHAR
+// =====================================
+
+function embaralhar(array){
+
+for(let i=array.length-1;i>0;i--){
+
+const j=Math.floor(
+Math.random()*(i+1)
+);
+
+[array[i],array[j]] =
+[array[j],array[i]];
+
+}
+
+return array;
+
+}
+
+// =====================================
+// HISTÓRICO
+// =====================================
+
+function carregarHistorico(){
+
+const container =
+document.getElementById(
+"historicoResultados"
+);
+
+if(!container){
+return;
+}
+
+const historico = JSON.parse(
+localStorage.getItem(
+"historicoPCBA"
+) || "[]"
+);
+
+container.innerHTML = "";
+
+if(historico.length === 0){
+
+container.innerHTML = `
+
+<div class="historico-item">
+Nenhum resultado salvo.
+</div>
+
+`;
+
+return;
+
+}
+
+historico.forEach(item=>{
+
+container.innerHTML += `
+
+<div class="historico-item">
+
+<strong>${item.data}</strong>
+
+<br><br>
+
+Acertos:
+${item.acertos}
+
+<br>
+
+Erros:
+${item.erros}
+
+<br>
+
+Aproveitamento:
+${item.percentual}%
+
+</div>
+
+`;
+
+});
+
+}
 // =====================================
 // MOSTRAR SEÇÕES
 // =====================================

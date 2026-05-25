@@ -253,8 +253,6 @@ document.getElementById("btnNovoSimulado")
 document.getElementById("btnVoltarInicio")
   ?.addEventListener("click", () => mostrar("home"));
 
-document.getElementById("btnRefazer")
-  ?.addEventListener("click", gerarSimulado);
 
 // =====================================
 // EVENTO GLOBAL

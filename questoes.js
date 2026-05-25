@@ -1,4 +1,4 @@
-const bancoQuestoes = [
+window.bancoQuestoes = [
 {
 id: 1,
 materia: "Português",

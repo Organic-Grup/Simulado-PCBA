@@ -1,6 +1,6 @@
 // =====================================
 // PCBA INVESTIGADOR PRO
-// APP.JS OFICIAL (VERSÃO FINAL LIMPA)
+// APP.JS OFICIAL (VERSÃO FINAL LIMPA E CORRIGIDA)
 // =====================================
 
 let QUESTOES_POR_PROVA = 100;
@@ -27,7 +27,7 @@ const respondidas = document.getElementById("respondidas");
 const totalQuestoes = document.getElementById("totalQuestoes");
 
 // =====================================
-// MOSTRAR SEÇÕES (CORRIGIDO)
+// MOSTRAR SEÇÕES
 // =====================================
 
 function mostrar(secao){
@@ -53,6 +53,7 @@ function embaralhar(array){
   }
   return array;
 }
+
 // =====================================
 // GERAR SIMULADO
 // =====================================
@@ -79,15 +80,12 @@ function gerarSimulado(){
 
   embaralhar(base);
 
-  tempoRestante = 10800; // 🔥 RESET CORRETO
-
+  tempoRestante = 10800;
   questoesAtuais = base.slice(0, Math.min(QUESTOES_POR_PROVA, base.length));
 
   renderizarQuestoes();
   atualizarRespondidas();
-
   iniciarCronometro();
-
   mostrar(simulado);
 }
 
@@ -130,12 +128,10 @@ function renderizarQuestoes(){
 }
 
 // =====================================
-// PROGRESSO (CORRIGIDO + SALVAMENTO)
+// PROGRESSO
 // =====================================
 
 function atualizarRespondidas(){
-
-  salvarSimulado(); // 🔥 SALVA SEMPRE
 
   const marcadas = document.querySelectorAll("input[type='radio']:checked").length;
 
@@ -151,16 +147,18 @@ function atualizarRespondidas(){
   if(barra){
     barra.style.width = percentual + "%";
   }
+
+  salvarSimulado();
 }
+
 // =====================================
-// CRONÔMETRO (SEM BUG)
+// CRONÔMETRO
 // =====================================
 
 function iniciarCronometro(){
 
   if(cronometro){
     clearInterval(cronometro);
-    cronometro = null;
   }
 
   cronometro = setInterval(()=>{
@@ -179,6 +177,8 @@ function iniciarCronometro(){
     }
 
     localStorage.setItem("tempoRestantePCBA", tempoRestante);
+
+    salvarSimulado();
 
     if(tempoRestante <= 0){
       clearInterval(cronometro);
@@ -247,15 +247,18 @@ function corrigirProva(){
 }
 
 // =====================================
-// SALVAR / CARREGAR (FINAL CORRIGIDO)
+// SALVAR / CARREGAR
 // =====================================
 
 function salvarSimulado(){
 
+  const respondidasAtuais =
+    document.querySelectorAll("input[type='radio']:checked").length;
+
   localStorage.setItem("simuladoSalvo", JSON.stringify({
     questoesAtuais,
     tempoRestante,
-    respondidas: document.querySelectorAll("input[type='radio']:checked").length
+    respondidas: respondidasAtuais
   }));
 }
 
@@ -271,21 +274,23 @@ function carregarSimuladoSalvo(){
 
   renderizarQuestoes();
 
-  setTimeout(() => {
-    atualizarRespondidas();
-
-    const barra = document.getElementById("progresso");
-    if(barra && questoesAtuais.length){
-      barra.style.width =
-        ((dados.respondidas || 0) / questoesAtuais.length) * 100 + "%";
-    }
-  }, 50);
-
   if(cronometro){
     clearInterval(cronometro);
   }
 
   iniciarCronometro();
   mostrar(simulado);
-}
 
+  setTimeout(() => {
+
+    atualizarRespondidas();
+
+    const barra = document.getElementById("progresso");
+
+    if(barra && questoesAtuais.length){
+      barra.style.width =
+        ((dados.respondidas || 0) / questoesAtuais.length) * 100 + "%";
+    }
+
+  }, 80);
+}

@@ -267,3 +267,13 @@ document.addEventListener("change",(e)=>{
 });
 document.getElementById("btnIniciar")
   ?.addEventListener("click", gerarSimulado);
+window.addEventListener("load", () => {
+  const data = JSON.parse(localStorage.getItem("pcba_state"));
+
+  if (data && data.questoes?.length) {
+    state = data;
+    render();
+    timer();
+    mostrar("simulado");
+  }
+});

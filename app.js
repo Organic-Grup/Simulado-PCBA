@@ -279,44 +279,7 @@ function corrigirProva(){
   mostrar(resultado);
 }
 
-// =====================================
-// SALVAR / CARREGAR
-// =====================================
 
-function salvarSimulado(){
-  localStorage.setItem("simuladoSalvo", JSON.stringify({
-    questoesAtuais,
-    tempoRestante
-  }));
-}
-
-function carregarSimuladoSalvo(){
-
-  const salvo = localStorage.getItem("simuladoSalvo");
-  if(!salvo) return;
-
-  try{
-    const dados = JSON.parse(salvo);
-
-    questoesAtuais = dados.questoesAtuais || [];
-    tempoRestante = dados.tempoRestante || 10800;
-
-    renderizarQuestoes();
-    atualizarRespondidas();
-
-    // 🔥 evita múltiplos cronômetros
-    if(cronometro){
-      clearInterval(cronometro);
-    }
-
-    iniciarCronometro();
-
-    mostrar(simulado);
-
-  }catch(e){
-    console.error("Erro ao carregar simulado:", e);
-  }
-}
 // =====================================
 // INICIALIZAÇÃO
 // =====================================

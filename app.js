@@ -265,3 +265,5 @@ document.addEventListener("change",(e)=>{
     update();
   }
 });
+document.getElementById("btnIniciar")
+  ?.addEventListener("click", gerarSimulado);

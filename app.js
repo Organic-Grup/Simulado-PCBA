@@ -1,296 +1,258 @@
 // =====================================
-// PCBA INVESTIGADOR PRO
-// APP.JS OFICIAL (VERSÃO FINAL LIMPA E CORRIGIDA)
+// SIMULADO PCBA - ENGINE FINAL OTIMIZADA
+// COMPATÍVEL COM GITHUB PAGES
 // =====================================
 
-let QUESTOES_POR_PROVA = 100;
-let tempoRestante = 10800;
-let cronometro = null;
-let questoesAtuais = [];
+let state = {
+  questoes: [],
+  tempo: 10800,
+  cron: null,
+  respondidas: 0,
+  erros: []
+};
 
 // =====================================
-// ELEMENTOS
+// ELEMENTOS (compatível com seu projeto)
 // =====================================
 
-const home = document.getElementById("home");
-const configuracao = document.getElementById("configuracao");
-const simulado = document.getElementById("simulado");
-const resultado = document.getElementById("resultado");
-const redacaoArea = document.getElementById("redacaoArea");
-const tafArea = document.getElementById("tafArea");
-const historicoArea = document.getElementById("historicoArea");
-
-const questoesDiv = document.getElementById("questoes");
-
-const timer = document.getElementById("timer");
-const respondidas = document.getElementById("respondidas");
-const totalQuestoes = document.getElementById("totalQuestoes");
+const el = {
+  home: document.getElementById("home"),
+  simulado: document.getElementById("simulado"),
+  resultado: document.getElementById("resultado"),
+  questoes: document.getElementById("questoes"),
+  timer: document.getElementById("timer"),
+  respondidas: document.getElementById("respondidas"),
+  total: document.getElementById("totalQuestoes"),
+  progresso: document.getElementById("progresso")
+};
 
 // =====================================
-// MOSTRAR SEÇÕES
+// NAVEGAÇÃO SIMPLES
 // =====================================
 
-function mostrar(secao){
-  const secoes = [home, configuracao, simulado, resultado, redacaoArea, tafArea, historicoArea];
-
-  secoes.forEach(sec => {
-    if(sec) sec.classList.add("hidden");
+function mostrar(id){
+  [el.home, el.simulado, el.resultado].forEach(e=>{
+    if(e) e.classList.add("hidden");
   });
 
-  if(secao){
-    secao.classList.remove("hidden");
-  }
+  if(el[id]) el[id].classList.remove("hidden");
 }
 
 // =====================================
 // EMBARALHAR
 // =====================================
 
-function embaralhar(array){
-  for(let i=array.length-1;i>0;i--){
-    const j = Math.floor(Math.random()*(i+1));
-    [array[i], array[j]] = [array[j], array[i]];
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
   }
-  return array;
+  return a;
 }
 
 // =====================================
-// GERAR SIMULADO
+// INICIAR SIMULADO
 // =====================================
 
 function gerarSimulado(){
 
-  if(typeof bancoQuestoes === "undefined"){
+  if(!window.bancoQuestoes){
     alert("Banco de questões não encontrado!");
     return;
   }
 
-  let base = [...bancoQuestoes];
+  let base=[...bancoQuestoes];
 
-  const materia = document.getElementById("filtroMateria")?.value || "todas";
+  const filtro=document.getElementById("filtroMateria")?.value;
 
-  if(materia !== "todas"){
-    base = base.filter(q => q.materia === materia);
+  if(filtro && filtro!=="todas"){
+    base=base.filter(q=>q.materia===filtro);
   }
 
-  if(base.length === 0){
-    alert("Não existem questões cadastradas para esta matéria.");
-    return;
-  }
+  shuffle(base);
 
-  embaralhar(base);
+  state.questoes=base.slice(0,100);
+  state.tempo=10800;
+  state.respondidas=0;
+  state.erros=[];
 
-  tempoRestante = 10800;
-  questoesAtuais = base.slice(0, Math.min(QUESTOES_POR_PROVA, base.length));
+  render();
+  timer();
+  save();
 
-  renderizarQuestoes();
-  atualizarRespondidas();
-  iniciarCronometro();
-  mostrar(simulado);
+  mostrar("simulado");
 }
 
 // =====================================
-// RENDERIZAR QUESTÕES
+// RENDER QUESTÕES
 // =====================================
 
-function renderizarQuestoes(){
+function render(){
 
-  if(!questoesDiv) return;
+  el.questoes.innerHTML="";
 
-  questoesDiv.innerHTML = "";
+  state.questoes.forEach((q,i)=>{
 
-  questoesAtuais.forEach((q,i)=>{
+    const div=document.createElement("div");
+    div.className="questao";
 
-    const div = document.createElement("div");
-    div.className = "questao";
+    div.innerHTML=`
+      <div class="materia">${q.materia || ""}</div>
+      <h3>${i+1}. ${q.pergunta}</h3>
 
-    let html = `
-      <div class="materia">${q.materia}</div>
-      <h3>${i + 1}. ${q.pergunta}</h3>
+      ${q.alternativas.map((a,j)=>`
+        <label>
+          <input type="radio" name="q${i}" value="${j}">
+          ${a}
+        </label>
+      `).join("")}
     `;
 
-    q.alternativas.forEach((alt,j)=>{
-      html += `
-        <label class="alternativa">
-          <input type="radio" name="q${i}" value="${j}" onchange="atualizarRespondidas()">
-          ${alt}
-        </label>
-      `;
-    });
-
-    div.innerHTML = html;
-    questoesDiv.appendChild(div);
+    el.questoes.appendChild(div);
   });
 
-  if(totalQuestoes){
-    totalQuestoes.textContent = questoesAtuais.length;
+  if(el.total){
+    el.total.textContent=state.questoes.length;
   }
 }
 
 // =====================================
-// PROGRESSO
+// UPDATE PROGRESSO
 // =====================================
 
-function atualizarRespondidas(){
+function update(){
 
-  const marcadas = document.querySelectorAll("input[type='radio']:checked").length;
+  const marcadas=document.querySelectorAll("input[type=radio]:checked").length;
 
-  if(respondidas){
-    respondidas.textContent = marcadas;
+  state.respondidas=marcadas;
+
+  if(el.respondidas){
+    el.respondidas.textContent=marcadas;
   }
 
-  const percentual = questoesAtuais.length
-    ? (marcadas / questoesAtuais.length) * 100
+  const p=state.questoes.length
+    ? (marcadas/state.questoes.length)*100
     : 0;
 
-  const barra = document.getElementById("progresso");
-  if(barra){
-    barra.style.width = percentual + "%";
+  if(el.progresso){
+    el.progresso.style.width=p+"%";
   }
 
-  salvarSimulado();
+  save();
 }
 
 // =====================================
-// CRONÔMETRO
+// TIMER
 // =====================================
 
-function iniciarCronometro(){
+function timer(){
 
-  if(cronometro){
-    clearInterval(cronometro);
-  }
+  if(state.cron) clearInterval(state.cron);
 
-  cronometro = setInterval(()=>{
+  state.cron=setInterval(()=>{
 
-    tempoRestante--;
+    state.tempo--;
 
-    const h = Math.floor(tempoRestante / 3600);
-    const m = Math.floor((tempoRestante % 3600) / 60);
-    const s = tempoRestante % 60;
+    const h=String(Math.floor(state.tempo/3600)).padStart(2,"0");
+    const m=String(Math.floor((state.tempo%3600)/60)).padStart(2,"0");
+    const s=String(state.tempo%60).padStart(2,"0");
 
-    if(timer){
-      timer.textContent =
-        String(h).padStart(2,"0") + ":" +
-        String(m).padStart(2,"0") + ":" +
-        String(s).padStart(2,"0");
+    if(el.timer){
+      el.timer.textContent=`${h}:${m}:${s}`;
     }
 
-    localStorage.setItem("tempoRestantePCBA", tempoRestante);
+    save();
 
-    salvarSimulado();
-
-    if(tempoRestante <= 0){
-      clearInterval(cronometro);
-      corrigirProva();
+    if(state.tempo<=0){
+      finalizar();
     }
 
   },1000);
 }
 
 // =====================================
-// CORRIGIR PROVA
+// FINALIZAR PROVA
 // =====================================
 
-function corrigirProva(){
+function finalizar(){
 
-  clearInterval(cronometro);
+  clearInterval(state.cron);
 
-  let acertos = 0;
-  let erros = 0;
+  let acertos=0;
 
-  questoesAtuais.forEach((q,i)=>{
+  state.questoes.forEach((q,i)=>{
 
-    const resposta = document.querySelector(`input[name="q${i}"]:checked`);
+    const r=document.querySelector(`input[name=q${i}]:checked`);
 
-    if(resposta && Number(resposta.value) === q.correta){
+    if(r && Number(r.value)===q.correta){
       acertos++;
-    } else {
-      erros++;
+    }else{
+      state.erros.push(q);
     }
   });
 
-  const percentualFinal = questoesAtuais.length
-    ? ((acertos / questoesAtuais.length) * 100).toFixed(1)
-    : 0;
+  const erros=state.questoes.length-acertos;
+  const p=((acertos/state.questoes.length)*100).toFixed(1);
 
-  document.getElementById("acertos").textContent = acertos;
-  document.getElementById("erros").textContent = erros;
-  document.getElementById("percentual").textContent = percentualFinal + "%";
+  document.getElementById("acertos").textContent=acertos;
+  document.getElementById("erros").textContent=erros;
+  document.getElementById("percentual").textContent=p+"%";
 
-  const historico = JSON.parse(localStorage.getItem("historicoPCBA") || "[]");
+  gerarAnalise();
 
-  historico.unshift({
-    data: new Date().toLocaleString(),
-    acertos,
-    erros,
-    percentual: percentualFinal
-  });
-
-  localStorage.setItem("historicoPCBA", JSON.stringify(historico.slice(0,50)));
-
-  const gabarito = document.getElementById("gabaritoComentarios");
-
-  if(gabarito){
-    gabarito.innerHTML = questoesAtuais.map((q,i)=>`
-      <div class="gabarito-item">
-        <strong>Questão ${i + 1}</strong><br><br>
-        <b>Matéria:</b> ${q.materia}<br><br>
-        <b>Resposta correta:</b> ${q.alternativas[q.correta]}<br><br>
-        <b>Comentário:</b> ${q.comentario || "Sem comentário."}
-      </div>
-    `).join("");
-  }
-
-  carregarHistorico();
-  mostrar(resultado);
+  mostrar("resultado");
 }
 
 // =====================================
-// SALVAR / CARREGAR
+// ANÁLISE SIMPLES E EFICIENTE
 // =====================================
 
-function salvarSimulado(){
+function gerarAnalise(){
 
-  const respondidasAtuais =
-    document.querySelectorAll("input[type='radio']:checked").length;
+  const box=document.getElementById("analise");
+  if(!box) return;
 
-  localStorage.setItem("simuladoSalvo", JSON.stringify({
-    questoesAtuais,
-    tempoRestante,
-    respondidas: respondidasAtuais
-  }));
+  box.innerHTML=`
+    <h3>Revisar com prioridade</h3>
+    ${state.erros.slice(0,5).map(q=>`
+      <p>${q.materia} - ${q.pergunta}</p>
+    `).join("")}
+  `;
 }
+
+// =====================================
+// SAVE STATE
+// =====================================
+
+function save(){
+  localStorage.setItem("pcba_state",JSON.stringify(state));
+}
+
+// =====================================
+// RESTORE
+// =====================================
 
 function carregarSimuladoSalvo(){
 
-  const salvo = localStorage.getItem("simuladoSalvo");
-  if(!salvo) return;
+  const data=JSON.parse(localStorage.getItem("pcba_state"));
+  if(!data) return;
 
-  const dados = JSON.parse(salvo);
+  state=data;
 
-  questoesAtuais = dados.questoesAtuais || [];
-  tempoRestante = dados.tempoRestante || 10800;
+  render();
+  timer();
 
-  renderizarQuestoes();
+  setTimeout(update,100);
 
-  if(cronometro){
-    clearInterval(cronometro);
-  }
-
-  iniciarCronometro();
-  mostrar(simulado);
-
-  setTimeout(() => {
-
-    atualizarRespondidas();
-
-    const barra = document.getElementById("progresso");
-
-    if(barra && questoesAtuais.length){
-      barra.style.width =
-        ((dados.respondidas || 0) / questoesAtuais.length) * 100 + "%";
-    }
-
-  }, 80);
+  mostrar("simulado");
 }
+
+// =====================================
+// EVENTO GLOBAL (IMPORTANTE)
+// =====================================
+
+document.addEventListener("change",(e)=>{
+  if(e.target.matches("input[type=radio]")){
+    update();
+  }
+});

@@ -103,7 +103,7 @@ alternativas: [
 correta: 1,
 comentario: "ONU, 1948."
 }
-];
+
 {
 id: 11,
 materia: "Direito Penal",

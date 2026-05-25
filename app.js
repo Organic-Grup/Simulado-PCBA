@@ -27,21 +27,13 @@ const respondidas = document.getElementById("respondidas");
 const totalQuestoes = document.getElementById("totalQuestoes");
 
 // =====================================
-// MOSTRAR SEÇÕES
+// MOSTRAR SEÇÕES (CORRIGIDO)
 // =====================================
 
 function mostrar(secao){
-  const secoes = [
-    home,
-    configuracao,
-    simulado,
-    resultado,
-    redacaoArea,
-    tafArea,
-    historicoArea
-  ];
+  const secoes = [home, configuracao, simulado, resultado, redacaoArea, tafArea, historicoArea];
 
-  secoes.forEach(sec=>{
+  secoes.forEach(sec => {
     if(sec) sec.classList.add("hidden");
   });
 
@@ -57,11 +49,10 @@ function mostrar(secao){
 function embaralhar(array){
   for(let i=array.length-1;i>0;i--){
     const j = Math.floor(Math.random()*(i+1));
-    [array[i],array[j]] = [array[j],array[i]];
+    [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
 }
-
 // =====================================
 // GERAR SIMULADO
 // =====================================
@@ -88,41 +79,16 @@ function gerarSimulado(){
 
   embaralhar(base);
 
-  questoesAtuais = base.slice(
-    0,
-    Math.min(QUESTOES_POR_PROVA, base.length)
-  );
+  tempoRestante = 10800; // 🔥 RESET CORRETO
+
+  questoesAtuais = base.slice(0, Math.min(QUESTOES_POR_PROVA, base.length));
 
   renderizarQuestoes();
   atualizarRespondidas();
+
   iniciarCronometro();
+
   mostrar(simulado);
-}
-
-// =====================================
-// HISTÓRICO
-// =====================================
-
-function carregarHistorico(){
-
-  const container = document.getElementById("historicoResultados");
-  if(!container) return;
-
-  const historico = JSON.parse(localStorage.getItem("historicoPCBA") || "[]");
-
-  if(historico.length === 0){
-    container.innerHTML = `<div class="historico-item">Nenhum resultado salvo.</div>`;
-    return;
-  }
-
-  container.innerHTML = historico.map(item => `
-    <div class="historico-item">
-      <strong>${item.data}</strong><br><br>
-      Acertos: ${item.acertos}<br>
-      Erros: ${item.erros}<br>
-      Aproveitamento: ${item.percentual}%
-    </div>
-  `).join("");
 }
 
 // =====================================
@@ -164,10 +130,12 @@ function renderizarQuestoes(){
 }
 
 // =====================================
-// PROGRESSO
+// PROGRESSO (CORRIGIDO + SALVAMENTO)
 // =====================================
 
 function atualizarRespondidas(){
+
+  salvarSimulado(); // 🔥 SALVA SEMPRE
 
   const marcadas = document.querySelectorAll("input[type='radio']:checked").length;
 
@@ -175,24 +143,25 @@ function atualizarRespondidas(){
     respondidas.textContent = marcadas;
   }
 
-  const percentual =
-    questoesAtuais.length
-      ? (marcadas / questoesAtuais.length) * 100
-      : 0;
+  const percentual = questoesAtuais.length
+    ? (marcadas / questoesAtuais.length) * 100
+    : 0;
 
   const barra = document.getElementById("progresso");
   if(barra){
     barra.style.width = percentual + "%";
   }
 }
-
 // =====================================
-// CRONÔMETRO
+// CRONÔMETRO (SEM BUG)
 // =====================================
 
 function iniciarCronometro(){
 
-  clearInterval(cronometro);
+  if(cronometro){
+    clearInterval(cronometro);
+    cronometro = null;
+  }
 
   cronometro = setInterval(()=>{
 
@@ -210,7 +179,7 @@ function iniciarCronometro(){
     }
 
     localStorage.setItem("tempoRestantePCBA", tempoRestante);
-    
+
     if(tempoRestante <= 0){
       clearInterval(cronometro);
       corrigirProva();
@@ -241,10 +210,9 @@ function corrigirProva(){
     }
   });
 
-  const percentualFinal =
-    questoesAtuais.length
-      ? ((acertos / questoesAtuais.length) * 100).toFixed(1)
-      : 0;
+  const percentualFinal = questoesAtuais.length
+    ? ((acertos / questoesAtuais.length) * 100).toFixed(1)
+    : 0;
 
   document.getElementById("acertos").textContent = acertos;
   document.getElementById("erros").textContent = erros;
@@ -264,7 +232,6 @@ function corrigirProva(){
   const gabarito = document.getElementById("gabaritoComentarios");
 
   if(gabarito){
-
     gabarito.innerHTML = questoesAtuais.map((q,i)=>`
       <div class="gabarito-item">
         <strong>Questão ${i + 1}</strong><br><br>
@@ -279,48 +246,46 @@ function corrigirProva(){
   mostrar(resultado);
 }
 
-
 // =====================================
-// INICIALIZAÇÃO
+// SALVAR / CARREGAR (FINAL CORRIGIDO)
 // =====================================
 
 function salvarSimulado(){
+
   localStorage.setItem("simuladoSalvo", JSON.stringify({
     questoesAtuais,
     tempoRestante,
     respondidas: document.querySelectorAll("input[type='radio']:checked").length
   }));
 }
+
 function carregarSimuladoSalvo(){
 
   const salvo = localStorage.getItem("simuladoSalvo");
   if(!salvo) return;
 
-  try{
-    const dados = JSON.parse(salvo);
+  const dados = JSON.parse(salvo);
 
-    questoesAtuais = dados.questoesAtuais || [];
-    tempoRestante = dados.tempoRestante || 10800;
+  questoesAtuais = dados.questoesAtuais || [];
+  tempoRestante = dados.tempoRestante || 10800;
 
-    renderizarQuestoes();
+  renderizarQuestoes();
+
+  setTimeout(() => {
     atualizarRespondidas();
 
-    // 🔥 atualiza barra de progresso também
     const barra = document.getElementById("progresso");
-
     if(barra && questoesAtuais.length){
       barra.style.width =
         ((dados.respondidas || 0) / questoesAtuais.length) * 100 + "%";
     }
+  }, 50);
 
-    if(cronometro){
-      clearInterval(cronometro);
-    }
-
-    iniciarCronometro();
-    mostrar(simulado);
-
-  }catch(e){
-    console.error("Erro ao carregar simulado:", e);
+  if(cronometro){
+    clearInterval(cronometro);
   }
+
+  iniciarCronometro();
+  mostrar(simulado);
 }
+

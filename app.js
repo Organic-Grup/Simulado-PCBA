@@ -321,25 +321,43 @@ function carregarSimuladoSalvo(){
 // INICIALIZAÇÃO
 // =====================================
 
-function iniciarApp(){
-
-  carregarHistorico();
+function salvarSimulado(){
+  localStorage.setItem("simuladoSalvo", JSON.stringify({
+    questoesAtuais,
+    tempoRestante,
+    respondidas: document.querySelectorAll("input[type='radio']:checked").length
+  }));
+}
+function carregarSimuladoSalvo(){
 
   const salvo = localStorage.getItem("simuladoSalvo");
+  if(!salvo) return;
 
-  if(!salvo){
-    mostrar(home);
-    return;
-  }
+  try{
+    const dados = JSON.parse(salvo);
 
-  const continuar = confirm("Deseja continuar o simulado salvo?");
+    questoesAtuais = dados.questoesAtuais || [];
+    tempoRestante = dados.tempoRestante || 10800;
 
-  if(continuar){
-    carregarSimuladoSalvo();
-  } else {
-    localStorage.removeItem("simuladoSalvo");
-    mostrar(home);
+    renderizarQuestoes();
+    atualizarRespondidas();
+
+    // 🔥 atualiza barra de progresso também
+    const barra = document.getElementById("progresso");
+
+    if(barra && questoesAtuais.length){
+      barra.style.width =
+        ((dados.respondidas || 0) / questoesAtuais.length) * 100 + "%";
+    }
+
+    if(cronometro){
+      clearInterval(cronometro);
+    }
+
+    iniciarCronometro();
+    mostrar(simulado);
+
+  }catch(e){
+    console.error("Erro ao carregar simulado:", e);
   }
 }
-
-iniciarApp();

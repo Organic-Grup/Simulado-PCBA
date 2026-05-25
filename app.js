@@ -210,7 +210,6 @@ function iniciarCronometro(){
     }
 
     localStorage.setItem("tempoRestantePCBA", tempoRestante);
-salvarSimulado();
     
     if(tempoRestante <= 0){
       clearInterval(cronometro);

@@ -1,6 +1,6 @@
 // =====================================
 // PCBA INVESTIGADOR PRO
-// APP.JS OFICIAL (VERSÃO CORRIGIDA)
+// APP.JS OFICIAL (VERSÃO FINAL LIMPA)
 // =====================================
 
 let QUESTOES_POR_PROVA = 100;
@@ -27,7 +27,7 @@ const respondidas = document.getElementById("respondidas");
 const totalQuestoes = document.getElementById("totalQuestoes");
 
 // =====================================
-// MOSTRAR SEÇÕES (CORRIGIDO - ÚNICO)
+// MOSTRAR SEÇÕES
 // =====================================
 
 function mostrar(secao){
@@ -63,7 +63,7 @@ function embaralhar(array){
 }
 
 // =====================================
-// GERAR SIMULADO (PROTEGIDO)
+// GERAR SIMULADO
 // =====================================
 
 function gerarSimulado(){
@@ -75,7 +75,7 @@ function gerarSimulado(){
 
   let base = [...bancoQuestoes];
 
-  const materia = document.getElementById("filtroMateria").value;
+  const materia = document.getElementById("filtroMateria")?.value || "todas";
 
   if(materia !== "todas"){
     base = base.filter(q => q.materia === materia);
@@ -88,7 +88,10 @@ function gerarSimulado(){
 
   embaralhar(base);
 
-  questoesAtuais = base.slice(0, Math.min(QUESTOES_POR_PROVA, base.length));
+  questoesAtuais = base.slice(
+    0,
+    Math.min(QUESTOES_POR_PROVA, base.length)
+  );
 
   renderizarQuestoes();
   atualizarRespondidas();
@@ -112,21 +115,16 @@ function carregarHistorico(){
     return;
   }
 
-  let html = "";
-
-  historico.forEach(item=>{
-    html += `
-      <div class="historico-item">
-        <strong>${item.data}</strong><br><br>
-        Acertos: ${item.acertos}<br>
-        Erros: ${item.erros}<br>
-        Aproveitamento: ${item.percentual}%
-      </div>
-    `;
-  });
-
-  container.innerHTML = html;
+  container.innerHTML = historico.map(item => `
+    <div class="historico-item">
+      <strong>${item.data}</strong><br><br>
+      Acertos: ${item.acertos}<br>
+      Erros: ${item.erros}<br>
+      Aproveitamento: ${item.percentual}%
+    </div>
+  `).join("");
 }
+
 // =====================================
 // RENDERIZAR QUESTÕES
 // =====================================
@@ -148,15 +146,9 @@ function renderizarQuestoes(){
     `;
 
     q.alternativas.forEach((alt,j)=>{
-
       html += `
         <label class="alternativa">
-          <input
-            type="radio"
-            name="q${i}"
-            value="${j}"
-            onchange="atualizarRespondidas()"
-          >
+          <input type="radio" name="q${i}" value="${j}" onchange="atualizarRespondidas()">
           ${alt}
         </label>
       `;
@@ -184,19 +176,18 @@ function atualizarRespondidas(){
   }
 
   const percentual =
-    questoesAtuais.length > 0
+    questoesAtuais.length
       ? (marcadas / questoesAtuais.length) * 100
       : 0;
 
   const barra = document.getElementById("progresso");
-
   if(barra){
     barra.style.width = percentual + "%";
   }
 }
 
 // =====================================
-// CRONÔMETRO (CORRIGIDO)
+// CRONÔMETRO
 // =====================================
 
 function iniciarCronometro(){
@@ -229,7 +220,7 @@ function iniciarCronometro(){
 }
 
 // =====================================
-// CORRIGIR PROVA (PRINCIPAL)
+// CORRIGIR PROVA
 // =====================================
 
 function corrigirProva(){
@@ -251,17 +242,13 @@ function corrigirProva(){
   });
 
   const percentualFinal =
-    questoesAtuais.length > 0
+    questoesAtuais.length
       ? ((acertos / questoesAtuais.length) * 100).toFixed(1)
       : 0;
 
   document.getElementById("acertos").textContent = acertos;
   document.getElementById("erros").textContent = erros;
   document.getElementById("percentual").textContent = percentualFinal + "%";
-
-  // =====================================
-  // SALVAR HISTÓRICO
-  // =====================================
 
   const historico = JSON.parse(localStorage.getItem("historicoPCBA") || "[]");
 
@@ -272,35 +259,20 @@ function corrigirProva(){
     percentual: percentualFinal
   });
 
-  if(historico.length > 50){
-    historico.length = 50;
-  }
-
-  localStorage.setItem("historicoPCBA", JSON.stringify(historico));
-
-  // =====================================
-  // MOSTRAR GABARITO
-  // =====================================
+  localStorage.setItem("historicoPCBA", JSON.stringify(historico.slice(0,50)));
 
   const gabarito = document.getElementById("gabaritoComentarios");
 
   if(gabarito){
 
-    let html = "";
-
-    questoesAtuais.forEach((q,i)=>{
-
-      html += `
-        <div class="gabarito-item">
-          <strong>Questão ${i + 1}</strong><br><br>
-          <b>Matéria:</b> ${q.materia}<br><br>
-          <b>Resposta correta:</b> ${q.alternativas[q.correta]}<br><br>
-          <b>Comentário:</b> ${q.comentario || "Sem comentário."}
-        </div>
-      `;
-    });
-
-    gabarito.innerHTML = html;
+    gabarito.innerHTML = questoesAtuais.map((q,i)=>`
+      <div class="gabarito-item">
+        <strong>Questão ${i + 1}</strong><br><br>
+        <b>Matéria:</b> ${q.materia}<br><br>
+        <b>Resposta correta:</b> ${q.alternativas[q.correta]}<br><br>
+        <b>Comentário:</b> ${q.comentario || "Sem comentário."}
+      </div>
+    `).join("");
   }
 
   carregarHistorico();
@@ -308,77 +280,22 @@ function corrigirProva(){
 }
 
 // =====================================
-// SALVAR SIMULADO
+// SALVAR / CARREGAR
 // =====================================
 
 function salvarSimulado(){
-
   localStorage.setItem("simuladoSalvo", JSON.stringify({
     questoesAtuais,
     tempoRestante
   }));
-
 }
 
-// =====================================
-// INICIALIZAÇÃO SEGURA (CORRIGIDA)
-// =====================================
-
-function iniciarApp() {
-  carregarHistorico();
+function carregarSimuladoSalvo(){
 
   const salvo = localStorage.getItem("simuladoSalvo");
+  if(!salvo) return;
 
-  if (!salvo) {
-    mostrar(home);
-    console.log("PCBA Investigador PRO carregado com sucesso.");
-    return;
-  }
-
-  const continuar = confirm(
-    "Você tem um simulado salvo. Deseja continuar de onde parou?"
-  );
-
-  if (continuar) {
-    carregarSimuladoSalvo();
-  } else {
-    localStorage.removeItem("simuladoSalvo");
-    mostrar(home);
-  }
-
-  console.log("PCBA Investigador PRO carregado com sucesso.");
-}
-
-// =====================================
-// MOSTRAR SEÇÕES (VERSÃO FINAL LIMPA)
-// =====================================
-function mostrar(secao) {
-  const secoes = [
-    home,
-    configuracao,
-    simulado,
-    resultado,
-    redacaoArea,
-    tafArea,
-    historicoArea
-  ];
-
-  secoes.forEach(sec => {
-    if (sec) sec.classList.add("hidden");
-  });
-
-  if (secao) {
-    secao.classList.remove("hidden");
-  }
-}
-function carregarSimuladoSalvo() {
-
-  const salvo = localStorage.getItem("simuladoSalvo");
-
-  if (!salvo) return;
-
-  try {
-
+  try{
     const dados = JSON.parse(salvo);
 
     questoesAtuais = dados.questoesAtuais || [];
@@ -392,7 +309,34 @@ function carregarSimuladoSalvo() {
 
     mostrar(simulado);
 
-  } catch (e) {
+  }catch(e){
     console.error("Erro ao carregar simulado:", e);
   }
 }
+
+// =====================================
+// INICIALIZAÇÃO
+// =====================================
+
+function iniciarApp(){
+
+  carregarHistorico();
+
+  const salvo = localStorage.getItem("simuladoSalvo");
+
+  if(!salvo){
+    mostrar(home);
+    return;
+  }
+
+  const continuar = confirm("Deseja continuar o simulado salvo?");
+
+  if(continuar){
+    carregarSimuladoSalvo();
+  } else {
+    localStorage.removeItem("simuladoSalvo");
+    mostrar(home);
+  }
+}
+
+iniciarApp();

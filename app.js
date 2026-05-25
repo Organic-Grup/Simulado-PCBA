@@ -70,7 +70,7 @@ function gerarSimulado(){
     return;
   }
 
-  let base = [...bancoQuestoes];
+  let base = [...window.bancoQuestoes];
 
   const filtro = document.getElementById("filtroMateria")?.value;
 

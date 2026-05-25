@@ -241,18 +241,28 @@ function save(){
 // BOTÕES (🔥 ESSENCIAL - AGORA FUNCIONA)
 // =====================================
 
-document.getElementById("btnIniciar")
-  ?.addEventListener("click", gerarSimulado);
+function bindButtons(){
 
-document.getElementById("btnFinalizar")
-  ?.addEventListener("click", finalizar);
+  const btnIniciar = document.getElementById("btnIniciar");
+  if(btnIniciar){
+    btnIniciar.onclick = gerarSimulado;
+  }
 
-document.getElementById("btnNovoSimulado")
-  ?.addEventListener("click", () => mostrar("configuracao"));
+  const btnFinalizar = document.getElementById("btnFinalizar");
+  if(btnFinalizar){
+    btnFinalizar.onclick = finalizar;
+  }
 
-document.getElementById("btnVoltarInicio")
-  ?.addEventListener("click", () => mostrar("home"));
+  const btnNovo = document.getElementById("btnNovoSimulado");
+  if(btnNovo){
+    btnNovo.onclick = () => mostrar("configuracao");
+  }
 
+  const btnVoltar = document.getElementById("btnVoltarInicio");
+  if(btnVoltar){
+    btnVoltar.onclick = () => mostrar("home");
+  }
+}
 
 // =====================================
 // EVENTO GLOBAL

@@ -266,12 +266,29 @@ document.addEventListener("change",(e)=>{
 document.getElementById("btnIniciar")
   ?.addEventListener("click", gerarSimulado);
 window.addEventListener("load", () => {
-  const data = JSON.parse(localStorage.getItem("pcba_state"));
+  const data = localStorage.getItem("pcba_state");
 
-  if (data && data.questoes?.length) {
-    state = data;
+  if (!data) return;
+
+  try {
+    const parsed = JSON.parse(data);
+
+    // validação mínima
+    if (!parsed.questoes || !Array.isArray(parsed.questoes)) return;
+
+    state = parsed;
+
     render();
-    timer();
+    update();   // 🔥 ESSENCIAL (corrige progresso e respondidas)
+
+    // evita múltiplos timers
+    if (state.tempo > 0) {
+      timer();
+    }
+
     mostrar("simulado");
+
+  } catch (e) {
+    console.log("Erro ao restaurar simulado:", e);
   }
 });

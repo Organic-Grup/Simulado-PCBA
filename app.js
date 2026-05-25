@@ -304,7 +304,11 @@ function carregarSimuladoSalvo(){
     renderizarQuestoes();
     atualizarRespondidas();
 
-    clearInterval(cronometro);
+    // 🔥 evita múltiplos cronômetros
+    if(cronometro){
+      clearInterval(cronometro);
+    }
+
     iniciarCronometro();
 
     mostrar(simulado);
@@ -313,7 +317,6 @@ function carregarSimuladoSalvo(){
     console.error("Erro ao carregar simulado:", e);
   }
 }
-
 // =====================================
 // INICIALIZAÇÃO
 // =====================================

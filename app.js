@@ -386,6 +386,8 @@ function carregarSimuladoSalvo() {
 
     renderizarQuestoes();
     atualizarRespondidas();
+
+    clearInterval(cronometro);
     iniciarCronometro();
 
     mostrar(simulado);

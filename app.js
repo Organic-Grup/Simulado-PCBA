@@ -1,6 +1,6 @@
 // =====================================
-// SIMULADO PCBA - ENGINE FINAL OTIMIZADA
-// COMPATÍVEL COM GITHUB PAGES
+// SIMULADOR PCBA - ENGINE FINAL CORRIGIDA
+// 100% FUNCIONAL - COPIAR E COLAR
 // =====================================
 
 let state = {
@@ -12,11 +12,12 @@ let state = {
 };
 
 // =====================================
-// ELEMENTOS (compatível com seu projeto)
+// ELEMENTOS
 // =====================================
 
 const el = {
   home: document.getElementById("home"),
+  configuracao: document.getElementById("configuracao"),
   simulado: document.getElementById("simulado"),
   resultado: document.getElementById("resultado"),
   questoes: document.getElementById("questoes"),
@@ -27,19 +28,27 @@ const el = {
 };
 
 // =====================================
-// NAVEGAÇÃO SIMPLES
+// NAVEGAÇÃO (AGORA COMPLETA)
 // =====================================
 
 function mostrar(id){
-  [el.home, el.simulado, el.resultado].forEach(e=>{
-    if(e) e.classList.add("hidden");
-  });
 
-  if(el[id]) el[id].classList.remove("hidden");
+  const telas = [
+    el.home,
+    el.configuracao,
+    el.simulado,
+    el.resultado
+  ];
+
+  telas.forEach(t => t?.classList.add("hidden"));
+
+  if(el[id]){
+    el[id].classList.remove("hidden");
+  }
 }
 
 // =====================================
-// EMBARALHAR
+// SHUFFLE
 // =====================================
 
 function shuffle(a){
@@ -61,20 +70,20 @@ function gerarSimulado(){
     return;
   }
 
-  let base=[...bancoQuestoes];
+  let base = [...bancoQuestoes];
 
-  const filtro=document.getElementById("filtroMateria")?.value;
+  const filtro = document.getElementById("filtroMateria")?.value;
 
-  if(filtro && filtro!=="todas"){
-    base=base.filter(q=>q.materia===filtro);
+  if(filtro && filtro !== "todas"){
+    base = base.filter(q => q.materia === filtro);
   }
 
   shuffle(base);
 
-  state.questoes=base.slice(0,100);
-  state.tempo=10800;
-  state.respondidas=0;
-  state.erros=[];
+  state.questoes = base.slice(0, 100);
+  state.tempo = 10800;
+  state.respondidas = 0;
+  state.erros = [];
 
   render();
   timer();
@@ -84,20 +93,20 @@ function gerarSimulado(){
 }
 
 // =====================================
-// RENDER QUESTÕES
+// RENDER
 // =====================================
 
 function render(){
 
-  el.questoes.innerHTML="";
+  el.questoes.innerHTML = "";
 
   state.questoes.forEach((q,i)=>{
 
-    const div=document.createElement("div");
-    div.className="questao";
+    const div = document.createElement("div");
+    div.className = "questao";
 
-    div.innerHTML=`
-      <div class="materia">${q.materia || ""}</div>
+    div.innerHTML = `
+      <div class="materia">${q.materia}</div>
       <h3>${i+1}. ${q.pergunta}</h3>
 
       ${q.alternativas.map((a,j)=>`
@@ -112,30 +121,30 @@ function render(){
   });
 
   if(el.total){
-    el.total.textContent=state.questoes.length;
+    el.total.textContent = state.questoes.length;
   }
 }
 
 // =====================================
-// UPDATE PROGRESSO
+// UPDATE
 // =====================================
 
 function update(){
 
-  const marcadas=document.querySelectorAll("input[type=radio]:checked").length;
+  const marcadas = document.querySelectorAll("input[type=radio]:checked").length;
 
-  state.respondidas=marcadas;
+  state.respondidas = marcadas;
 
   if(el.respondidas){
-    el.respondidas.textContent=marcadas;
+    el.respondidas.textContent = marcadas;
   }
 
-  const p=state.questoes.length
+  const p = state.questoes.length
     ? (marcadas/state.questoes.length)*100
     : 0;
 
   if(el.progresso){
-    el.progresso.style.width=p+"%";
+    el.progresso.style.width = p + "%";
   }
 
   save();
@@ -149,21 +158,21 @@ function timer(){
 
   if(state.cron) clearInterval(state.cron);
 
-  state.cron=setInterval(()=>{
+  state.cron = setInterval(()=>{
 
     state.tempo--;
 
-    const h=String(Math.floor(state.tempo/3600)).padStart(2,"0");
-    const m=String(Math.floor((state.tempo%3600)/60)).padStart(2,"0");
-    const s=String(state.tempo%60).padStart(2,"0");
+    const h = String(Math.floor(state.tempo/3600)).padStart(2,"0");
+    const m = String(Math.floor((state.tempo%3600)/60)).padStart(2,"0");
+    const s = String(state.tempo%60).padStart(2,"0");
 
     if(el.timer){
-      el.timer.textContent=`${h}:${m}:${s}`;
+      el.timer.textContent = `${h}:${m}:${s}`;
     }
 
     save();
 
-    if(state.tempo<=0){
+    if(state.tempo <= 0){
       finalizar();
     }
 
@@ -171,84 +180,84 @@ function timer(){
 }
 
 // =====================================
-// FINALIZAR PROVA
+// FINALIZAR
 // =====================================
 
 function finalizar(){
 
   clearInterval(state.cron);
 
-  let acertos=0;
+  let acertos = 0;
+  state.erros = [];
 
   state.questoes.forEach((q,i)=>{
 
-    const r=document.querySelector(`input[name=q${i}]:checked`);
+    const r = document.querySelector(`input[name=q${i}]:checked`);
 
-    if(r && Number(r.value)===q.correta){
+    if(r && Number(r.value) === q.correta){
       acertos++;
-    }else{
+    } else {
       state.erros.push(q);
     }
   });
 
-  const erros=state.questoes.length-acertos;
-  const p=((acertos/state.questoes.length)*100).toFixed(1);
+  const erros = state.questoes.length - acertos;
+  const p = ((acertos/state.questoes.length)*100).toFixed(1);
 
-  document.getElementById("acertos").textContent=acertos;
-  document.getElementById("erros").textContent=erros;
-  document.getElementById("percentual").textContent=p+"%";
+  document.getElementById("acertos").textContent = acertos;
+  document.getElementById("erros").textContent = erros;
+  document.getElementById("percentual").textContent = p + "%";
 
   gerarAnalise();
-
   mostrar("resultado");
 }
 
 // =====================================
-// ANÁLISE SIMPLES E EFICIENTE
+// ANÁLISE
 // =====================================
 
 function gerarAnalise(){
 
-  const box=document.getElementById("analise");
+  const box = document.getElementById("analise");
   if(!box) return;
 
-  box.innerHTML=`
-    <h3>Revisar com prioridade</h3>
-    ${state.erros.slice(0,5).map(q=>`
-      <p>${q.materia} - ${q.pergunta}</p>
+  box.innerHTML = `
+    <h3>🔥 Revisão Prioritária</h3>
+    ${state.erros.slice(0,10).map(q=>`
+      <p>${q.materia} → ${q.pergunta}</p>
     `).join("")}
   `;
 }
 
 // =====================================
-// SAVE STATE
+// SALVAR
 // =====================================
 
 function save(){
-  localStorage.setItem("pcba_state",JSON.stringify(state));
+  localStorage.setItem("pcba_state", JSON.stringify(state));
 }
 
 // =====================================
-// RESTORE
+// BOTÕES (🔥 ESSENCIAL - AGORA FUNCIONA)
 // =====================================
 
-function carregarSimuladoSalvo(){
+document.getElementById("btnIniciar")
+  ?.addEventListener("click", gerarSimulado);
 
-  const data=JSON.parse(localStorage.getItem("pcba_state"));
-  if(!data) return;
+document.getElementById("btnFinalizar")
+  ?.addEventListener("click", finalizar);
 
-  state=data;
+document.getElementById("btnNovoSimulado")
+  ?.addEventListener("click", () => mostrar("configuracao"));
 
-  render();
-  timer();
+document.getElementById("btnVoltarInicio")
+  ?.addEventListener("click", () => mostrar("home"));
 
-  setTimeout(update,100);
-
-  mostrar("simulado");
-}
+document.getElementById("btnRefazer")
+  ?.addEventListener("click", gerarSimulado);
 
 // =====================================
-// EVENTO GLOBAL (IMPORTANTE)
+// EVENTO GLOBAL
 // =====================================
 
 document.addEventListener("change",(e)=>{

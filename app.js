@@ -352,7 +352,6 @@ function iniciarApp() {
 // =====================================
 // MOSTRAR SEÇÕES (VERSÃO FINAL LIMPA)
 // =====================================
-
 function mostrar(secao) {
   const secoes = [
     home,
@@ -372,9 +371,26 @@ function mostrar(secao) {
     secao.classList.remove("hidden");
   }
 }
+function carregarSimuladoSalvo() {
 
-// =====================================
-// EXECUTAR APP
-// =====================================
+  const salvo = localStorage.getItem("simuladoSalvo");
 
-iniciarApp();
+  if (!salvo) return;
+
+  try {
+
+    const dados = JSON.parse(salvo);
+
+    questoesAtuais = dados.questoesAtuais || [];
+    tempoRestante = dados.tempoRestante || 10800;
+
+    renderizarQuestoes();
+    atualizarRespondidas();
+    iniciarCronometro();
+
+    mostrar(simulado);
+
+  } catch (e) {
+    console.error("Erro ao carregar simulado:", e);
+  }
+}
